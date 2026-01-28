@@ -25,7 +25,9 @@ import mammoth from 'mammoth';
 // For pdfjs-dist 5.x, use the .mjs worker file
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
-const PYTHON_BACKEND_URL = ENDPOINTS.itemBackend;
+// Use processorBackend for /process endpoint (FastAPI on port 8000)
+// Use itemBackend for /execute-multimodal-agent (Worker on port 3001)
+const PYTHON_BACKEND_URL = ENDPOINTS.processorBackend;
 const USE_DIRECT_BACKEND = ENDPOINTS.useDirectBackend;
 
 interface TextProcessingResult {

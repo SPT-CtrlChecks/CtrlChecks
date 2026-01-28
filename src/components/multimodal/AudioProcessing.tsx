@@ -20,7 +20,9 @@ import { supabase } from '@/integrations/supabase/client';
 import { ENDPOINTS } from '@/config/endpoints';
 import { toast } from '@/hooks/use-toast';
 
-const PYTHON_BACKEND_URL = ENDPOINTS.itemBackend;
+// Use processorBackend for /process endpoint (FastAPI on port 8000)
+// Use itemBackend for /execute-multimodal-agent (Worker on port 3001)
+const PYTHON_BACKEND_URL = ENDPOINTS.processorBackend;
 const USE_DIRECT_BACKEND = ENDPOINTS.useDirectBackend;
 
 interface AudioProcessingResult {
