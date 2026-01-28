@@ -11,7 +11,8 @@ import {
   CheckCircle, XCircle, Loader2,
   FileText, DatabaseZap, Calendar, Users,
   Layers, Edit, Edit3, Tag, Code2, ListChecks,
-  ArrowUpDown, List, Terminal, Calculator, Lock, Rss, Target, Bug
+  ArrowUpDown, List, Terminal, Calculator, Lock, Rss, Target, Bug, Bot,
+  AlertTriangle, Plus
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -20,7 +21,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Combine, Send, Mail, MessageSquare, Database, Box, FileText, DatabaseZap,
   Calendar, CheckCircle, Users,
   XCircle, Layers, Edit, Edit3, Tag, Code2, ListChecks, ArrowUpDown, List, Terminal,
-  Calculator, Lock, Rss, Target
+  Calculator, Lock, Rss, Target, Bot
 };
 
 type WorkflowNodeProps = Node<NodeData>;
@@ -55,6 +56,7 @@ const WorkflowNode = memo(({ data, selected, id }: NodeProps<WorkflowNodeProps>)
   const IconComponent = iconMap[nodeIcon] || Box;
   const isIfElseNode = nodeType === 'if_else';
   const isSwitchNode = nodeType === 'switch';
+  const isAIAgentNode = nodeType === 'ai_agent';
 
   // Parse Switch cases to create output handles
   // This will automatically update when data.config.cases changes
@@ -93,9 +95,10 @@ const WorkflowNode = memo(({ data, selected, id }: NodeProps<WorkflowNodeProps>)
     <div
       className={cn(
         'px-5 py-4 rounded-lg border-2 bg-card shadow-md transition-all relative',
-        borderClass
+        borderClass,
+        isAIAgentNode && 'pb-16' // Extra padding for bottom port labels
       )}
-      style={{ width: '240px', minHeight: '70px' }}
+      style={{ width: isAIAgentNode ? '280px' : '240px', minHeight: isAIAgentNode ? '120px' : '70px' }}
     >
       {/* Execution Status Indicators */}
       {status === 'running' && (
@@ -109,27 +112,153 @@ const WorkflowNode = memo(({ data, selected, id }: NodeProps<WorkflowNodeProps>)
         </div>
       )}
       {status === 'error' && (
-        <div className="absolute -top-2 -right-2 bg-background rounded-full p-0.5 shadow-sm border border-border z-10">
-          <XCircle className="h-4 w-4 text-red-500" />
-        </div>
+        <>
+          <div className="absolute -top-2 -right-2 bg-background rounded-full p-0.5 shadow-sm border border-border z-10">
+            <XCircle className="h-4 w-4 text-red-500" />
+          </div>
+          {/* Error indicator in bottom-right corner for AI Agent */}
+          {isAIAgentNode && (
+            <div className="absolute bottom-2 right-2 z-10">
+              <div className="bg-red-500 rounded-sm p-0.5">
+                <AlertTriangle className="h-3 w-3 text-white" />
+              </div>
+            </div>
+          )}
+        </>
       )}
-      <Handle
-        type="target"
-        position={Position.Top}
-        className="!w-3 !h-3 !bg-muted-foreground !border-2 !border-background"
-      />
 
-      <div className="flex items-center gap-3">
+      {/* AI Agent has multiple input ports with labels */}
+      {isAIAgentNode ? (
+        <>
+          {/* Left side: General input handle with visual indicator */}
+          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 flex items-center pointer-events-none z-0">
+            <Plus className="h-2 w-2 text-muted-foreground/50 mr-0.5" />
+            <div className="w-2 h-px bg-border/40"></div>
+          </div>
+          <Handle
+            type="target"
+            position={Position.Left}
+            className="!w-3 !h-3 !bg-muted-foreground !border-2 !border-background"
+            style={{ top: '50%', transform: 'translateY(-50%)' }}
+          />
+          
+          {/* Bottom Input Ports with Labels */}
+          <div className="absolute bottom-0 left-0 right-0 flex justify-between items-end px-2 pb-1">
+            {/* Chat Model* (left) */}
+            <div className="flex flex-col items-center relative" style={{ flex: 1 }}>
+              <div className="relative mb-1">
+                <div className="absolute left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                  <div className="w-2.5 h-2.5 bg-muted-foreground border-2 border-background rotate-45"></div>
+                </div>
+                <Handle
+                  type="target"
+                  id="chat_model"
+                  position={Position.Bottom}
+                  className="!w-2.5 !h-2.5 !bg-transparent !border-0"
+                />
+              </div>
+              <div className="text-[10px] text-foreground font-medium whitespace-nowrap text-center leading-tight mt-0.5">
+                Chat Model<span className="text-red-500 ml-0.5">*</span>
+              </div>
+              <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex flex-col items-center pointer-events-none">
+                <div className="w-px h-2.5 bg-border/40"></div>
+                <Plus className="h-2 w-2 text-muted-foreground/50 -mt-0.5" />
+              </div>
+            </div>
+            
+            {/* Memory (middle) */}
+            <div className="flex flex-col items-center relative" style={{ flex: 1 }}>
+              <div className="relative mb-1">
+                <div className="absolute left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                  <div className="w-2.5 h-2.5 bg-muted-foreground border-2 border-background rotate-45"></div>
+                </div>
+                <Handle
+                  type="target"
+                  id="memory"
+                  position={Position.Bottom}
+                  className="!w-2.5 !h-2.5 !bg-transparent !border-0"
+                />
+              </div>
+              <div className="text-[10px] text-foreground font-medium whitespace-nowrap text-center leading-tight mt-0.5">
+                Memory
+              </div>
+              <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex flex-col items-center pointer-events-none">
+                <div className="w-px h-2.5 bg-border/40"></div>
+                <Plus className="h-2 w-2 text-muted-foreground/50 -mt-0.5" />
+              </div>
+            </div>
+            
+            {/* Tool (right) */}
+            <div className="flex flex-col items-center relative" style={{ flex: 1 }}>
+              <div className="relative mb-1">
+                <div className="absolute left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                  <div className="w-2.5 h-2.5 bg-muted-foreground border-2 border-background rotate-45"></div>
+                </div>
+                <Handle
+                  type="target"
+                  id="tool"
+                  position={Position.Bottom}
+                  className="!w-2.5 !h-2.5 !bg-transparent !border-0"
+                />
+              </div>
+              <div className="text-[10px] text-foreground font-medium whitespace-nowrap text-center leading-tight mt-0.5">
+                Tool
+              </div>
+              <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex flex-col items-center pointer-events-none">
+                <div className="w-px h-2.5 bg-border/40"></div>
+                <Plus className="h-2 w-2 text-muted-foreground/50 -mt-0.5" />
+              </div>
+            </div>
+          </div>
+          
+          {/* Output handle on right side (centered vertically) with visual connection indicator */}
+          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-10">
+            <Handle
+              type="source"
+              id="output"
+              position={Position.Right}
+              className="!w-3 !h-3 !bg-muted-foreground !border-2 !border-background"
+            />
+          </div>
+          {/* Visual output connection indicator - horizontal line and plus sign extending to the right */}
+          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-3 flex items-center pointer-events-none z-0">
+            <div className="w-3 h-px bg-border/40"></div>
+            <Plus className="h-2.5 w-2.5 text-muted-foreground/50 -ml-0.5" />
+          </div>
+        </>
+      ) : (
+        <>
+          <Handle
+            type="target"
+            position={Position.Top}
+            className="!w-3 !h-3 !bg-muted-foreground !border-2 !border-background"
+          />
+        </>
+      )}
+
+      <div className={cn("flex items-center gap-3", isAIAgentNode && "justify-center")}>
         <div
           className="flex h-8 w-8 items-center justify-center rounded-md flex-shrink-0"
           style={{ backgroundColor: category?.color + '20', color: category?.color }}
         >
           <IconComponent className="h-4 w-4" />
         </div>
-        <div className="flex-1 min-w-0">
-          <div className="font-medium text-sm leading-tight break-words hyphens-auto">{nodeLabel}</div>
-          <div className="text-xs text-muted-foreground capitalize leading-tight break-words mt-0.5">{nodeCategory}</div>
-        </div>
+        {isAIAgentNode ? (
+          <div className="flex-1 min-w-0 text-center">
+            <div className="font-medium text-sm leading-tight break-words hyphens-auto">
+              {nodeLabel}
+            </div>
+          </div>
+        ) : (
+          <div className="flex-1 min-w-0">
+            <div className="font-medium text-sm leading-tight break-words hyphens-auto">
+              {nodeLabel}
+            </div>
+            <div className="text-xs text-muted-foreground capitalize leading-tight break-words mt-0.5">
+              {nodeCategory}
+            </div>
+          </div>
+        )}
         <button
           onClick={handleDebugClick}
           className={cn(
@@ -205,7 +334,7 @@ const WorkflowNode = memo(({ data, selected, id }: NodeProps<WorkflowNodeProps>)
             className="!w-3 !h-3 !bg-muted-foreground !border-2 !border-background"
           />
         )
-      ) : (
+      ) : isAIAgentNode ? null : (
         <Handle
           type="source"
           position={Position.Bottom}

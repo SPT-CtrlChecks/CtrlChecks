@@ -4280,24 +4280,79 @@ Output: {
   // SPECIALIZED AI AGENTS & AUTOMATION NODES
   // ============================================
   ai_agent: {
-    overview: 'Generic AI agent node that can perform various AI tasks with customizable prompts. Supports multi-iteration reasoning and tool use. Perfect for complex AI tasks that require custom behavior or multi-step reasoning.',
-    inputs: ['apiKey', 'model', 'prompt', 'task', 'maxIterations'],
-    outputs: ['result', 'iterations', 'reasoning'],
-    example: `Model: gpt-4o
-Task: "Analyze this data and provide insights"
-Max Iterations: 5
+    overview: 'Autonomous intelligent agent capable of understanding user input, reasoning over context, using memory, invoking tools, validating outputs, and producing structured responses. Acts as a decision-making and execution unit inside workflows. Supports multiple execution modes (chat, task, tool-only, planning, validation, autonomous) and can connect to Chat Model (required), Memory (optional), and Tool (optional) nodes.',
+    inputs: [
+      'systemPrompt (System instructions defining agent behavior)',
+      'mode (Execution mode: chat, task, tool_only, planning, validation, autonomous)',
+      'userInput (User prompt or input data)',
+      'chat_model (Connected Chat Model node - required)',
+      'memory (Connected Memory node - optional)',
+      'tool (Connected Tool/Function nodes - optional)',
+      'temperature, maxTokens, topP, frequencyPenalty, presencePenalty',
+      'strictMode, creativityLevel, timeoutLimit, retryCount',
+      'outputFormat (text, json, keyvalue, markdown)',
+      'includeReasoning, errorHandlingMode, enableValidation',
+    ],
+    outputs: [
+      'response_text (Plain text response)',
+      'response_json (Structured JSON response)',
+      'response_markdown (Markdown formatted response)',
+      'confidence_score (Confidence level 0-1)',
+      'used_tools (Array of tools invoked)',
+      'memory_written (Whether memory was updated)',
+      'error_flag (Whether an error occurred)',
+      'error_message (Error details if any)',
+      'reasoning (Reasoning steps if includeReasoning enabled)',
+    ],
+    example: `Configuration:
+System Prompt: "You are a customer support agent..."
+Mode: chat
+Temperature: 0.7
+Output Format: json
+Enable Memory: true
+Enable Tools: true
+
+Connections:
+- Chat Model node → AI Agent (chat_model port)
+- Memory node → AI Agent (memory port)
+- Tool node → AI Agent (tool port)
+
+Input: {
+  userInput: "I need help with my order"
+}
 
 Output: {
-  result: "Analysis insights...",
-  iterations: 3,
-  reasoning: "Step-by-step analysis..."
+  response_text: "I'd be happy to help with your order...",
+  response_json: {
+    action: "lookup_order",
+    message: "I'd be happy to help..."
+  },
+  confidence_score: 0.85,
+  used_tools: ["order_lookup"],
+  memory_written: true,
+  error_flag: false
 }`,
     tips: [
-      'Generic AI agent for custom tasks',
-      'Supports multi-iteration reasoning',
-      'Customize prompt for specific behavior',
-      'Max iterations prevent infinite loops',
-      'Use for complex AI tasks requiring reasoning',
+      'Connect Chat Model node to the top port (required)',
+      'Connect Memory node to bottom-left port for conversation history',
+      'Connect Tool/Function nodes to bottom-right port for tool execution',
+      'Use Chat Mode for conversational interactions',
+      'Use Task Mode for single task completion',
+      'Use Tool-Only Mode when you only want tool execution',
+      'Use Planning Mode to generate action plans',
+      'Use Validation Mode to validate inputs/outputs',
+      'Use Autonomous Mode for full autonomy',
+      'Set strictMode=true to prevent assumptions',
+      'Lower temperature (0.1-0.5) for factual tasks',
+      'Higher temperature (0.7-1.2) for creative tasks',
+      'Enable includeReasoning for debugging and transparency',
+      'Configure errorHandlingMode based on workflow needs',
+      'Use JSON output format for structured data',
+      'Memory connection enables multi-turn conversations',
+      'Tool connection enables function calling and API integration',
+      'Set appropriate timeoutLimit for complex tasks',
+      'Configure retryCount for resilience',
+      'Enable validation to reduce hallucinations',
     ],
   },
 

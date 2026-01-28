@@ -1240,23 +1240,190 @@ export const NODE_TYPES: NodeTypeDefinition[] = [
     label: 'AI Agent',
     category: 'ai',
     icon: 'Bot',
-    description: 'AI agent',
-    defaultConfig: { model: 'gpt-4o', maxIterations: 5 },
+    description: 'Autonomous AI agent',
+    defaultConfig: {
+      systemPrompt: 'You are an autonomous intelligent agent inside an automation workflow. Understand user input, reason over context, use available tools when needed, and produce structured responses.',
+      mode: 'chat',
+      temperature: 0.7,
+      maxTokens: 2000,
+      topP: 1.0,
+      frequencyPenalty: 0.0,
+      presencePenalty: 0.0,
+      strictMode: false,
+      creativityLevel: 'balanced',
+      timeoutLimit: 30000,
+      retryCount: 3,
+      streaming: false,
+      parallelToolCalls: false,
+      outputFormat: 'text',
+      includeReasoning: false,
+      errorHandlingMode: 'retry',
+      enableValidation: true,
+      enableMemory: true,
+      enableTools: true,
+    },
     configFields: [
-      { key: 'apiKey', label: 'API Key', type: 'text', placeholder: 'Your API key (required)', required: true, helpText: 'How to get API Key: For OpenAI: 1) Go to platform.openai.com/api-keys 2) Create new secret key. For Anthropic: 1) Go to console.anthropic.com/settings/keys 2) Create key. For Gemini: 1) Go to aistudio.google.com/apikey 2) Create key' },
-      { key: 'model', label: 'Model', type: 'select', options: [
-        { label: 'GPT-4o', value: 'gpt-4o' },
-        { label: 'GPT-4o Mini', value: 'gpt-4o-mini' },
-        { label: 'Claude 3.5 Sonnet', value: 'claude-3-5-sonnet' },
-        { label: 'Gemini 2.5 Pro', value: 'gemini-2.5-pro' },
-        { label: 'Gemini 2.5 Flash', value: 'gemini-2.5-flash' },
-        { label: 'Gemini 2.5 Flash Lite', value: 'gemini-2.5-flash-lite' },
-        { label: 'Gemini Pro', value: 'gemini-pro' },
-      ], defaultValue: 'gpt-4o', required: true, helpText: 'AI model to use: GPT-4o = most capable OpenAI model, GPT-4o Mini = faster and cheaper, Claude 3.5 Sonnet = Anthropic best model, Gemini models = Google AI. Choose based on your needs: GPT-4o for complex tasks, Claude for reasoning, Gemini for efficiency' },
-      { key: 'prompt', label: 'Agent Prompt', type: 'textarea', placeholder: 'You are an AI agent...', required: true, helpText: 'System prompt that defines the AI agent behavior and role. Describe what the agent should do, its capabilities, and constraints. Examples: "You are a helpful customer service agent", "You are a data analyst that summarizes reports"' },
-      { key: 'tools', label: 'Tools (JSON)', type: 'json', placeholder: '[{"name": "search", "description": "..."}]', helpText: 'Array of available tools for the agent' },
-      { key: 'maxIterations', label: 'Max Iterations', type: 'number', defaultValue: 5, helpText: 'Maximum number of reasoning steps' },
-      { key: 'temperature', label: 'Temperature', type: 'number', defaultValue: 0.7, helpText: 'Controls randomness in AI responses. Range: 0.0 (deterministic/focused) to 2.0 (creative/random). Default: 0.7. Use lower values (0.0-0.5) for factual tasks, higher values (0.7-1.2) for creative tasks' },
+      { 
+        key: 'systemPrompt', 
+        label: 'System Prompt / Instructions', 
+        type: 'textarea', 
+        placeholder: 'You are an autonomous intelligent agent...', 
+        defaultValue: 'You are an autonomous intelligent agent inside an automation workflow. Understand user input, reason over context, use available tools when needed, and produce structured responses.',
+        required: true, 
+        helpText: 'System prompt that defines the agent\'s role, behavior, and capabilities. Describe what the agent should do, its personality, constraints, and output format. Examples: "You are a customer support agent", "You are a data analysis agent"' 
+      },
+      { 
+        key: 'mode', 
+        label: 'Execution Mode', 
+        type: 'select', 
+        options: [
+          { label: 'Chat Mode', value: 'chat' },
+          { label: 'Task Mode', value: 'task' },
+          { label: 'Tool-Only Mode', value: 'tool_only' },
+          { label: 'Planning Mode', value: 'planning' },
+          { label: 'Validation Mode', value: 'validation' },
+          { label: 'Autonomous Mode', value: 'autonomous' },
+        ], 
+        defaultValue: 'chat', 
+        required: true, 
+        helpText: 'Execution mode: Chat = conversational, Task = single task completion, Tool-Only = only use tools, Planning = create plans, Validation = validate inputs/outputs, Autonomous = full autonomy' 
+      },
+      { 
+        key: 'temperature', 
+        label: 'Temperature', 
+        type: 'number', 
+        defaultValue: 0.7, 
+        helpText: 'Controls randomness (0.0-2.0). Lower = deterministic/focused, Higher = creative/random. Default: 0.7. Use 0.1-0.5 for factual tasks, 0.7-1.2 for creative tasks' 
+      },
+      { 
+        key: 'maxTokens', 
+        label: 'Max Tokens', 
+        type: 'number', 
+        defaultValue: 2000, 
+        helpText: 'Maximum tokens in response. Higher = longer responses but more cost. Default: 2000. Adjust based on expected response length' 
+      },
+      { 
+        key: 'topP', 
+        label: 'Top-P (Nucleus Sampling)', 
+        type: 'number', 
+        defaultValue: 1.0, 
+        helpText: 'Controls diversity via nucleus sampling (0.0-1.0). Default: 1.0. Lower values = more focused, higher = more diverse' 
+      },
+      { 
+        key: 'frequencyPenalty', 
+        label: 'Frequency Penalty', 
+        type: 'number', 
+        defaultValue: 0.0, 
+        helpText: 'Penalize frequent tokens (-2.0 to 2.0). Positive = reduce repetition. Default: 0.0' 
+      },
+      { 
+        key: 'presencePenalty', 
+        label: 'Presence Penalty', 
+        type: 'number', 
+        defaultValue: 0.0, 
+        helpText: 'Penalize new topics (-2.0 to 2.0). Positive = encourage new topics. Default: 0.0' 
+      },
+      { 
+        key: 'strictMode', 
+        label: 'Strict Mode (No Assumptions)', 
+        type: 'boolean', 
+        defaultValue: false, 
+        helpText: 'When enabled, agent will not make assumptions and will request clarification for ambiguous inputs' 
+      },
+      { 
+        key: 'creativityLevel', 
+        label: 'Creativity Level', 
+        type: 'select', 
+        options: [
+          { label: 'Low (Deterministic)', value: 'low' },
+          { label: 'Balanced', value: 'balanced' },
+          { label: 'High (Creative)', value: 'high' },
+        ], 
+        defaultValue: 'balanced', 
+        helpText: 'Creativity level: Low = consistent/repeatable, Balanced = default, High = creative/varied' 
+      },
+      { 
+        key: 'timeoutLimit', 
+        label: 'Timeout (ms)', 
+        type: 'number', 
+        defaultValue: 30000, 
+        helpText: 'Maximum execution time in milliseconds. Default: 30000 (30 seconds). Increase for complex tasks' 
+      },
+      { 
+        key: 'retryCount', 
+        label: 'Retry Count', 
+        type: 'number', 
+        defaultValue: 3, 
+        helpText: 'Number of retries on failure. Default: 3. Set to 0 to disable retries' 
+      },
+      { 
+        key: 'streaming', 
+        label: 'Enable Streaming', 
+        type: 'boolean', 
+        defaultValue: false, 
+        helpText: 'Stream responses as they are generated (for real-time updates)' 
+      },
+      { 
+        key: 'parallelToolCalls', 
+        label: 'Parallel Tool Calls', 
+        type: 'boolean', 
+        defaultValue: false, 
+        helpText: 'Allow multiple tools to be called simultaneously when possible' 
+      },
+      { 
+        key: 'outputFormat', 
+        label: 'Output Format', 
+        type: 'select', 
+        options: [
+          { label: 'Plain Text', value: 'text' },
+          { label: 'JSON', value: 'json' },
+          { label: 'Key-Value', value: 'keyvalue' },
+          { label: 'Markdown', value: 'markdown' },
+        ], 
+        defaultValue: 'text', 
+        helpText: 'Output format: Text = plain text, JSON = structured JSON, Key-Value = key-value pairs, Markdown = formatted markdown' 
+      },
+      { 
+        key: 'includeReasoning', 
+        label: 'Include Reasoning', 
+        type: 'boolean', 
+        defaultValue: false, 
+        helpText: 'Include reasoning steps in output (useful for debugging and transparency)' 
+      },
+      { 
+        key: 'errorHandlingMode', 
+        label: 'Error Handling Mode', 
+        type: 'select', 
+        options: [
+          { label: 'Stop Workflow', value: 'stop' },
+          { label: 'Retry with Modified Prompt', value: 'retry' },
+          { label: 'Escalate to Next Node', value: 'escalate' },
+          { label: 'Send Error Message', value: 'error_message' },
+        ], 
+        defaultValue: 'retry', 
+        helpText: 'How to handle errors: Stop = halt workflow, Retry = retry with modifications, Escalate = pass to next node, Error Message = output error as message' 
+      },
+      { 
+        key: 'enableValidation', 
+        label: 'Enable Output Validation', 
+        type: 'boolean', 
+        defaultValue: true, 
+        helpText: 'Validate outputs against expected schema and check for hallucinations' 
+      },
+      { 
+        key: 'enableMemory', 
+        label: 'Enable Memory (if connected)', 
+        type: 'boolean', 
+        defaultValue: true, 
+        helpText: 'Use memory connection if available (requires Memory node connection)' 
+      },
+      { 
+        key: 'enableTools', 
+        label: 'Enable Tools (if connected)', 
+        type: 'boolean', 
+        defaultValue: true, 
+        helpText: 'Use tool connections if available (requires Tool/Function node connections)' 
+      },
     ],
   },
   {
