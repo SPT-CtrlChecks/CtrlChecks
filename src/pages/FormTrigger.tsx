@@ -125,7 +125,7 @@ export default function FormTrigger() {
       const idempotencyKey = `form_${workflowId}_${nodeId}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
       const response = await fetch(
-        `${ENDPOINTS.itemBackend}/form-trigger/${workflowId}/${nodeId}/submit`,
+        `${ENDPOINTS.itemBackend}/api/form-trigger/${workflowId}/${nodeId}/submit`,
         {
           method: 'POST',
           headers: {

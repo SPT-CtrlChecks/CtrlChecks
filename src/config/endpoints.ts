@@ -64,5 +64,7 @@ export const ENDPOINTS = {
     useDirectBackend: import.meta.env.VITE_USE_DIRECT_BACKEND === 'true' || isDevelopment || !import.meta.env.VITE_SUPABASE_URL
 };
 
-// Log configuration on load for easier debugging
-console.log('App Configuration:', ENDPOINTS);
+// Log configuration on load for easier debugging (only in development)
+if (isDevelopment) {
+    console.log('App Configuration:', ENDPOINTS);
+}

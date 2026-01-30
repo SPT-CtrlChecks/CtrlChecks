@@ -456,12 +456,24 @@ export default function WorkflowBuilder() {
 
       const data = await response.json();
 
+      // Force refresh execution console to show new execution immediately
+      // The realtime subscription will handle updates, but we trigger a refresh for immediate feedback
+      setTimeout(() => {
+        // Trigger a refresh by dispatching a custom event that ExecutionConsole can listen to
+        window.dispatchEvent(new CustomEvent('workflow-execution-started', { 
+          detail: { executionId: data.executionId, workflowId: finalWorkflowId } 
+        }));
+      }, 500);
+
       toast({
-        title: data.status === 'success' ? 'Execution complete' : 'Execution failed',
+        title: data.status === 'success' ? 'Execution complete' : data.status === 'waiting' ? 'Waiting for form submission' : 'Execution failed',
         description: data.status === 'success'
           ? `Completed in ${data.durationMs}ms`
+          : data.status === 'waiting'
+          ? `Workflow paused at form node. Form URL: ${data.formUrl || 'N/A'}`
           : data.error || 'Unknown error',
-        variant: data.status === 'success' ? 'default' : 'destructive',
+        variant: data.status === 'success' ? 'default' : data.status === 'waiting' ? 'default' : 'destructive',
+        duration: data.status === 'waiting' ? 10000 : 5000,
       });
 
       // Don't navigate away - logs will show in console

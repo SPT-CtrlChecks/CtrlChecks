@@ -1,16 +1,13 @@
-# Pull Required Ollama Models for Multimodal Backend
-# This script pulls all models needed for image, text, and audio processing
+# Pull Required Ollama Models for Production (AWS g4dn.xlarge)
+# This script pulls production models optimized for 16GB GPU
 
-Write-Host "🔍 Pulling Ollama Models for Multimodal Backend..." -ForegroundColor Cyan
+Write-Host "🔍 Pulling Production Ollama Models..." -ForegroundColor Cyan
 Write-Host ""
 
-# Define models to pull
+# Define production models (optimized for g4dn.xlarge - 16GB GPU)
 $models = @(
-    @{Name="llava"; Description="Vision model for image captioning"; Status="pending"},
-    @{Name="qwen2.5-vl"; Description="Vision model alternative"; Status="pending"},
-    @{Name="mistral:7b"; Description="Text model (default)"; Status="pending"},
-    @{Name="qwen2.5:7b"; Description="Text model alternative"; Status="pending"},
-    @{Name="llama3:8b"; Description="Text model alternative"; Status="pending"}
+    @{Name="llama3.1:8b"; Description="General purpose model (4.9GB)"; Status="pending"},
+    @{Name="qwen2.5-coder:7b"; Description="Code generation model (4.5GB)"; Status="pending"}
 )
 
 $successCount = 0
@@ -57,11 +54,11 @@ foreach ($model in $models) {
 
 Write-Host ""
 
-# Note about audio models
-Write-Host "💡 Note: Audio processing (Whisper) is handled differently:" -ForegroundColor Yellow
-Write-Host "   - Whisper models are not available in Ollama" -ForegroundColor White
-Write-Host "   - Audio transcription uses OpenAI Whisper or local MMS models" -ForegroundColor White
-Write-Host "   - See audio_processor.py for audio implementation" -ForegroundColor White
+# Note about production models
+Write-Host "💡 Production Models (AWS g4dn.xlarge - 16GB GPU):" -ForegroundColor Yellow
+Write-Host "   - llama3.1:8b (4.9GB) - General purpose AI tasks" -ForegroundColor White
+Write-Host "   - qwen2.5-coder:7b (4.5GB) - Code generation tasks" -ForegroundColor White
+Write-Host "   - Total: ~9.4GB (fits perfectly in 16GB GPU)" -ForegroundColor White
 
 Write-Host ""
 Write-Host "✅ Model pulling complete!" -ForegroundColor Green

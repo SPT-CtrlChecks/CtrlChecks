@@ -70,8 +70,13 @@ export default function ExecutionConsole({ isExpanded, onToggle }: ExecutionCons
         return acc;
       }, []);
       setExecutions(uniqueExecutions);
-      if (uniqueExecutions.length > 0 && !selectedExecution) {
-        setSelectedExecution(uniqueExecutions[0]);
+      if (uniqueExecutions.length > 0) {
+        // Always select the most recent execution (first in the list)
+        const mostRecent = uniqueExecutions[0];
+        // Only update if it's different or if we don't have a selection
+        if (!selectedExecution || selectedExecution.id !== mostRecent.id) {
+          setSelectedExecution(mostRecent);
+        }
       }
     } catch (error) {
       console.error('Error loading executions:', error);
@@ -87,6 +92,50 @@ export default function ExecutionConsole({ isExpanded, onToggle }: ExecutionCons
       loadExecutions();
     }
   }, [workflowId, isExpanded, loadExecutions]);
+
+  // Listen for workflow execution started event to force refresh
+  useEffect(() => {
+    const handleExecutionStarted = (event: CustomEvent) => {
+      const { executionId, workflowId: eventWorkflowId } = event.detail;
+      if (eventWorkflowId === workflowId) {
+        console.log('Workflow execution started, refreshing executions...', executionId);
+        // Force refresh executions immediately
+        loadExecutions();
+        // Poll for updates while execution is running
+        const pollInterval = setInterval(() => {
+          loadExecutions();
+        }, 1000); // Poll every second
+        
+        // Stop polling after 30 seconds (execution should be done by then)
+        setTimeout(() => {
+          clearInterval(pollInterval);
+        }, 30000);
+      }
+    };
+
+    window.addEventListener('workflow-execution-started', handleExecutionStarted as EventListener);
+    return () => {
+      window.removeEventListener('workflow-execution-started', handleExecutionStarted as EventListener);
+    };
+  }, [workflowId, loadExecutions]);
+
+  // Auto-refresh executions periodically when console is expanded and there's a running execution
+  useEffect(() => {
+    if (!isExpanded || !workflowId) return;
+    
+    const hasRunningExecution = executions.some(exec => 
+      exec.status === 'running' || exec.status === 'waiting'
+    );
+    
+    if (hasRunningExecution) {
+      // Poll every 2 seconds while there's a running execution
+      const pollInterval = setInterval(() => {
+        loadExecutions();
+      }, 2000);
+      
+      return () => clearInterval(pollInterval);
+    }
+  }, [isExpanded, workflowId, executions, loadExecutions]);
 
   const selectedExecutionRef = useRef(selectedExecution);
   useEffect(() => {
@@ -128,6 +177,8 @@ export default function ExecutionConsole({ isExpanded, onToggle }: ExecutionCons
             setLastExecutionId(null);
             // Auto-select the new execution
             setSelectedExecution(newExecution);
+            // Force refresh to get latest logs
+            setTimeout(() => loadExecutions(), 500);
             // Auto-expand console if collapsed (triggered from parent)
           } else if (payload.eventType === 'UPDATE') {
             const updatedExecution = payload.new as Execution;
@@ -147,6 +198,8 @@ export default function ExecutionConsole({ isExpanded, onToggle }: ExecutionCons
             // Always update selected execution if it's the one being updated
             if (selectedExecutionRef.current?.id === updatedExecution.id) {
               setSelectedExecution(updatedExecution);
+              // Force refresh to get latest logs when current execution is updated
+              setTimeout(() => loadExecutions(), 300);
             } else if (!selectedExecutionRef.current || updatedExecution.started_at > selectedExecutionRef.current.started_at) {
               // Auto-select if it's newer than current selection
               setSelectedExecution(updatedExecution);
@@ -228,9 +281,17 @@ export default function ExecutionConsole({ isExpanded, onToggle }: ExecutionCons
   // Render structured logs instead of formatted string
   const renderStructuredLogs = (logs: Json | null) => {
     if (!logs) {
+      const isRunning = selectedExecution?.status === 'running' || selectedExecution?.status === 'waiting';
       return (
         <div className="text-sm text-muted-foreground p-4 text-center">
-          No logs available
+          {isRunning ? (
+            <div className="flex flex-col items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin text-primary" />
+              <span>Execution in progress... Logs will appear here as nodes execute.</span>
+            </div>
+          ) : (
+            'No logs available'
+          )}
         </div>
       );
     }

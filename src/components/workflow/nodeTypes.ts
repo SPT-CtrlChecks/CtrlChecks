@@ -1621,11 +1621,14 @@ export const NODE_TYPES: NodeTypeDefinition[] = [
     label: 'Ollama',
     category: 'ai',
     icon: 'Server',
-    description: 'Ollama AI',
-    defaultConfig: { serverUrl: 'http://localhost:11434', model: 'llama2' },
+    description: 'Ollama AI (AWS Production Models)',
+    defaultConfig: { serverUrl: 'http://localhost:11434', model: 'llama3.1:8b' },
     configFields: [
-      { key: 'serverUrl', label: 'Ollama Server URL', type: 'text', placeholder: 'http://localhost:11434', defaultValue: 'http://localhost:11434', required: true, helpText: 'URL of your Ollama server' },
-      { key: 'model', label: 'Model Name', type: 'text', placeholder: 'llama2', defaultValue: 'llama2', required: true, helpText: 'Ollama model name (e.g., llama2, mistral, codellama)' },
+      { key: 'serverUrl', label: 'Ollama Server URL', type: 'text', placeholder: 'http://localhost:11434', defaultValue: 'http://localhost:11434', required: true, helpText: 'URL of your Ollama server (AWS: http://ollama.ctrlchecks.ai:11434)' },
+      { key: 'model', label: 'Model Name', type: 'select', options: [
+        { label: 'llama3.1:8b (General Purpose)', value: 'llama3.1:8b' },
+        { label: 'qwen2.5-coder:7b (Code Generation)', value: 'qwen2.5-coder:7b' },
+      ], defaultValue: 'llama3.1:8b', required: true, helpText: 'Production models optimized for AWS g4dn.xlarge: llama3.1:8b for general tasks, qwen2.5-coder:7b for code tasks' },
       { key: 'prompt', label: 'Prompt', type: 'textarea', placeholder: 'Enter your prompt...', required: true, helpText: 'Prompt to send to the Ollama model. Describe the task, provide context, and specify the desired output format. Examples: "Explain quantum computing:", "Write a Python function to:", "Translate this text to Spanish:"' },
       { key: 'temperature', label: 'Temperature', type: 'number', defaultValue: 0.7, helpText: 'Controls randomness in AI responses. Range: 0.0 (deterministic/focused) to 2.0 (creative/random). Default: 0.7. Use lower values (0.0-0.5) for factual tasks, higher values (0.7-1.2) for creative tasks' },
     ],
