@@ -725,6 +725,21 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
       ],
       example: 'https://api.example.com/v1/data'
     },
+    method: {
+      title: 'How to get Method?',
+      steps: [
+        'Choose the HTTP method required by the API.',
+        '',
+        '• GET – Read data',
+        '• POST – Create data',
+        '• PUT – Replace data',
+        '• PATCH – Update part of data',
+        '• DELETE – Remove data',
+        '',
+        'Check the API documentation for the correct method.'
+      ],
+      example: 'GET'
+    },
     headers: {
       title: 'HTTP Request Headers – Step-by-Step',
       steps: [
@@ -758,6 +773,29 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '{"Authorization": "Bearer sk-xxx", "Content-Type": "application/json"}'
       ],
       example: '{"Authorization": "Bearer sk-xxx", "Content-Type": "application/json"}'
+    },
+    body: {
+      title: 'How to get Body (JSON)?',
+      steps: [
+        'Body is required for POST, PUT, or PATCH requests.',
+        '',
+        'Use JSON format and follow the API schema.',
+        '',
+        'Example:',
+        '{"name": "John Doe", "email": "john@example.com"}'
+      ],
+      example: '{"name": "John Doe"}'
+    },
+    timeout: {
+      title: 'How to get Timeout (ms)?',
+      steps: [
+        'Set how long to wait before the request fails.',
+        '',
+        'Default is 30000 (30 seconds).',
+        '',
+        'Increase for slow APIs or large responses.'
+      ],
+      example: '30000'
     }
   },
   google_sheets: {
@@ -900,6 +938,105 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Create Tweet – Post a text tweet (requires Tweet Text).',
+        '',
+        '• Create Tweet with Media – Post with an image/video (requires Tweet Text + Media URL).',
+        '',
+        '• Delete Tweet / Like / Unlike / Retweet / Get Tweet by ID – Requires Tweet ID.',
+        '',
+        '• Search Tweets – Requires Search Query (optional Max Results).',
+        '',
+        '• Get User Timeline / Follow / Unfollow – Requires Username.',
+        '',
+        '• Get Mentions – Uses Max Results to control how many items.',
+      ],
+      example: 'Create Tweet'
+    },
+    text: {
+      title: 'How to get Tweet Text?',
+      steps: [
+        'You type the tweet content or map it from a previous step.',
+        '',
+        '• Static: "Hello World from automation!"',
+        '',
+        '• Dynamic: Use data like "{{input.text}}".',
+        '',
+        'Required for Create Tweet and Create Tweet with Media.',
+      ],
+      example: 'Hello World from automation!'
+    },
+    tweetId: {
+      title: 'Twitter Tweet ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open the tweet in a browser',
+        '',
+        '2️⃣ Copy the number after /status/ in the URL',
+        '',
+        '3️⃣ Or use the ID returned when you create or list tweets',
+        '',
+        'Example:',
+        '1234567890123456789'
+      ],
+      example: '1234567890123456789'
+    },
+    mediaUrl: {
+      title: 'How to get Media URL?',
+      steps: [
+        'Upload the image or video to a public host (CDN, Cloudinary, Imgur, etc.).',
+        '',
+        'Copy the direct HTTPS URL to the file.',
+        '',
+        'The URL must be publicly accessible.',
+        '',
+        'Example:',
+        'https://example.com/image.jpg'
+      ],
+      example: 'https://example.com/image.jpg'
+    },
+    query: {
+      title: 'How to get Search Query?',
+      steps: [
+        'Write a Twitter search query using operators.',
+        '',
+        'Common examples:',
+        '• "keyword" (exact match)',
+        '• from:username',
+        '• has:media',
+        '• automation OR workflow',
+        '',
+        'Example:',
+        'automation OR workflow'
+      ],
+      example: 'automation OR workflow'
+    },
+    username: {
+      title: 'How to get Username?',
+      steps: [
+        'Open the Twitter profile in a browser.',
+        '',
+        'Copy the username from the URL (without the @).',
+        '',
+        'Example:',
+        'twitter_username'
+      ],
+      example: 'twitter_username'
+    },
+    maxResults: {
+      title: 'How to get Max Results?',
+      steps: [
+        'Enter how many results you want returned.',
+        '',
+        'Allowed range is 1–100.',
+        '',
+        'Used for Search Tweets, Get Mentions, and Get User Timeline.'
+      ],
+      example: '10'
     }
   },
   supabase: {
@@ -933,6 +1070,139 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlvdXJwcm9qZWN0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY0NTc5ODAwMCwiZXhwIjoxOTYxMzc0MDAwfQ.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+    },
+    projectUrl: {
+      title: 'Supabase Project URL – Step-by-Step',
+      steps: [
+        '1️⃣ Open Supabase Dashboard',
+        '   Go to 👉 https://app.supabase.com',
+        '   Sign in and open your project',
+        '',
+        '2️⃣ Go to API Settings',
+        '   Click "Settings" → "API"',
+        '',
+        '3️⃣ Copy Project URL',
+        '   It looks like: https://YOUR-PROJECT.supabase.co',
+        '',
+        '4️⃣ Paste into the Project URL field above',
+        '',
+        'Example:',
+        'https://xyzcompany.supabase.co'
+      ],
+      example: 'https://xyzcompany.supabase.co'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Select – Simple read from one table. You fill Table Name and optionally Filters, Limit, Order By, Ascending.',
+        '',
+        '• Raw SQL – You provide the full SQL Query (SELECT, INSERT, UPDATE, DELETE, or complex queries). Use for JOINs, subqueries, or write operations.',
+        '',
+        'Pick the one that matches what you need; the rest of the fields depend on this choice.'
+      ],
+      example: 'Select'
+    },
+    table: {
+      title: 'Supabase Table Name – Step-by-Step',
+      steps: [
+        '1️⃣ Open Supabase Dashboard',
+        '   Go to Database → Tables',
+        '',
+        '2️⃣ Copy the exact table name',
+        '   e.g. users, orders, events',
+        '',
+        '3️⃣ Paste into the Table Name field above',
+        '',
+        'Used only for Select operation.',
+        '',
+        'Example:',
+        'users'
+      ],
+      example: 'my_table'
+    },
+    query: {
+      title: 'How to get SQL Query?',
+      steps: [
+        'You write it or get it from a developer.',
+        '',
+        '• Read: SELECT * FROM table_name WHERE column = \'value\' LIMIT 10;',
+        '',
+        '• Insert: INSERT INTO table_name (col1, col2) VALUES (\'a\', \'b\');',
+        '',
+        '• Update: UPDATE table_name SET col1 = \'value\' WHERE id = 1;',
+        '',
+        '• Delete: DELETE FROM table_name WHERE id = 1;',
+        '',
+        'For complex queries (JOINs, subqueries), write or paste the full SQL. Used only for Raw SQL.',
+        'Be careful with INSERT/UPDATE/DELETE—they change data.'
+      ],
+      example: 'SELECT * FROM table WHERE id = 1'
+    },
+    filters: {
+      title: 'How to get Filters (JSON)?',
+      steps: [
+        'You build the JSON from the columns and values you want to filter on.',
+        '',
+        '• Format: {"column_name": "value"}',
+        '  Use exact column names from your table.',
+        '',
+        '• Multiple conditions: {"status": "active", "role": "user"}',
+        '  Both must match (AND).',
+        '',
+        '• Numbers: {"id": 1} or {"count": 100}',
+        '',
+        'Used only for Select. For complex conditions (e.g. OR, greater than), use Raw SQL.',
+        '',
+        'Example:',
+        '{"status": "active"}'
+      ],
+      example: '{"column": "value"}'
+    },
+    limit: {
+      title: 'How to get Limit?',
+      steps: [
+        'You enter a number—how many rows you want at most.',
+        '',
+        '• Default is often 100.',
+        '',
+        '• Use a smaller value (e.g. 10 or 20) for previews or to avoid large result sets.',
+        '',
+        'Used for Select (and sometimes for Raw SQL if the platform applies it). Prevents accidentally returning too much data.',
+        '',
+        'Example:',
+        '100'
+      ],
+      example: '100'
+    },
+    orderBy: {
+      title: 'How to get Order By?',
+      steps: [
+        'You type a column name from your table (e.g. created_at, id, name).',
+        '',
+        '• Leave empty if you don’t care about order.',
+        '',
+        '• Used with Ascending to control sort direction.',
+        '',
+        'Used only for Select operation.',
+        '',
+        'Example:',
+        'created_at'
+      ],
+      example: 'created_at'
+    },
+    ascending: {
+      title: 'How to get Ascending?',
+      steps: [
+        'You set the toggle in this node: true or false.',
+        '',
+        '• true – Ascending (A-Z, oldest first).',
+        '• false – Descending (Z-A, newest first).',
+        '',
+        'Only applies when Order By is set. Used only for Select operation.'
+      ],
+      example: 'true'
     }
   },
   mssql: {
@@ -1102,6 +1372,143 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '123456789012345'
       ],
       example: '123456789012345'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Create Page Post (Text/Image/Link/Video) – Create a post. Requires Page ID and Message (plus URL for image/link/video).',
+        '',
+        '• Get Page Posts – List posts from the Page. Requires Page ID and optional Limit.',
+        '',
+        '• Delete Page Post – Delete a post. Requires Post ID.',
+        '',
+        '• Create Comment / Reply to Comment – Add a comment. Requires Comment Text and Comment ID for replies.',
+        '',
+        '• Get Page Insights – Retrieve metrics like reach or impressions. Requires Insight Metric.',
+      ],
+      example: 'Create Page Post (Text)'
+    },
+    message: {
+      title: 'How to get Post Message?',
+      steps: [
+        'You type or provide the post content.',
+        '',
+        '• Static: Type it directly (e.g. "New product launched!").',
+        '',
+        '• Dynamic: Use data from earlier steps, e.g. "{{input.message}}".',
+        '',
+        'Required for create_post operations.'
+      ],
+      example: 'Your post content'
+    },
+    imageUrl: {
+      title: 'How to get Image URL?',
+      steps: [
+        'Upload the image to a public host (e.g. Cloudinary, CDN, Imgur).',
+        '',
+        'Copy the direct HTTPS URL to the image file.',
+        '',
+        'The URL must be publicly accessible.',
+        '',
+        'Example:',
+        'https://example.com/image.jpg'
+      ],
+      example: 'https://example.com/image.jpg'
+    },
+    linkUrl: {
+      title: 'How to get Link URL?',
+      steps: [
+        'Use the URL you want to share in the post.',
+        '',
+        'Must be a valid HTTP/HTTPS link.',
+        '',
+        'Example:',
+        'https://example.com/article'
+      ],
+      example: 'https://example.com/article'
+    },
+    videoUrl: {
+      title: 'How to get Video URL?',
+      steps: [
+        'Upload the video to a public host.',
+        '',
+        'Copy the direct HTTPS URL to the video file.',
+        '',
+        'The URL must be publicly accessible.',
+        '',
+        'Example:',
+        'https://example.com/video.mp4'
+      ],
+      example: 'https://example.com/video.mp4'
+    },
+    postId: {
+      title: 'Facebook Post ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open the post on your Facebook Page',
+        '',
+        '2️⃣ Click on the post → Copy link',
+        '',
+        '3️⃣ The Post ID is in the URL (often PAGE_ID_POST_ID)',
+        '',
+        '4️⃣ Or use the ID returned by the API when creating the post',
+        '',
+        'Example:',
+        '123456789012345_987654321098765'
+      ],
+      example: '123456789012345_987654321098765'
+    },
+    commentText: {
+      title: 'How to get Comment Text?',
+      steps: [
+        'You type or provide the comment text.',
+        '',
+        '• Static: Type it directly.',
+        '',
+        '• Dynamic: Use data from earlier steps, e.g. "{{input.comment}}".',
+        '',
+        'Required for Create Comment and Reply to Comment.'
+      ],
+      example: 'Your comment'
+    },
+    commentId: {
+      title: 'Facebook Comment ID – Step-by-Step',
+      steps: [
+        '1️⃣ Go to the post → View comments',
+        '',
+        '2️⃣ Click on a comment → Copy link',
+        '',
+        '3️⃣ The Comment ID appears in the URL',
+        '',
+        '4️⃣ Or use the ID returned by the API when listing comments',
+        '',
+        'Example:',
+        '123456789012345'
+      ],
+      example: '123456789012345'
+    },
+    metric: {
+      title: 'How to get Insight Metric?',
+      steps: [
+        'Choose a metric from the dropdown.',
+        '',
+        'Options include: page_impressions, page_reach, page_engaged_users, post_engagements.',
+        '',
+        'Used only for Get Page Insights.'
+      ],
+      example: 'page_reach'
+    },
+    limit: {
+      title: 'How to get Limit?',
+      steps: [
+        'Enter how many posts to return.',
+        '',
+        'Default is often 25 (max 100).',
+        '',
+        'Used for Get Page Posts.'
+      ],
+      example: '25'
     }
   },
   instagram: {
@@ -1238,6 +1645,40 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'AQVxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'AQVxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    organizationId: {
+      title: 'LinkedIn Organization ID (URN) – Step-by-Step',
+      steps: [
+        '1️⃣ Go to Your Company Page',
+        '   Navigate to your LinkedIn Company Page',
+        '   Make sure you\'re an admin',
+        '',
+        '2️⃣ Method 1: View Page Source',
+        '   Right-click on page → "View Page Source"',
+        '   Press Ctrl+F (or Cmd+F)',
+        '   Search for "organization"',
+        '   Find URN like "urn:li:organization:123456"',
+        '   Copy the full URN',
+        '',
+        '3️⃣ Method 2: Use Graph API',
+        '   Go to Graph API Explorer',
+        '   Query: GET /organizationAcls',
+        '   Response will show organization URNs',
+        '   Format: urn:li:organization:123456',
+        '',
+        '4️⃣ Method 3: From Page URL',
+        '   Some pages show ID in URL',
+        '   Check the page URL structure',
+        '',
+        '5️⃣ Use the Organization ID',
+        '   Paste the full URN into the field above',
+        '   Format: urn:li:organization:123456',
+        '   Include the "urn:li:organization:" prefix',
+        '',
+        'Example:',
+        'urn:li:organization:123456'
+      ],
+      example: 'urn:li:organization:123456'
     }
   },
   twilio: {
@@ -1493,6 +1934,135 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'Passwords are sensitive - store securely!'
       ],
       example: 'YourSecurePassword123!'
+    },
+    port: {
+      title: 'PostgreSQL Port – Step-by-Step',
+      steps: [
+        '• Default: Use 5432. It is correct in most cases.',
+        '',
+        '• If connection fails: Check your hosting dashboard or ask your provider for the correct port.',
+        '',
+        '• Enter only the number (e.g. 5432). Do not use MySQL port (3306) or other ports by mistake.',
+        '',
+        'Example:',
+        '5432'
+      ],
+      example: '5432'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Select – Simple read from one table. You fill Table Name and optionally Filters, Limit, Order By, Ascending. Use when you only need to read rows from a single table with simple conditions.',
+        '',
+        '• Raw SQL – You provide the full SQL Query (SELECT, INSERT, UPDATE, DELETE, or complex queries). Use for JOINs, subqueries, or write operations.',
+        '',
+        'Pick the one that matches what you need; the rest of the fields depend on this choice.'
+      ],
+      example: 'Select'
+    },
+    table: {
+      title: 'PostgreSQL Table Name – Step-by-Step',
+      steps: [
+        '1️⃣ Open your database admin tool',
+        '   (e.g. pgAdmin, DBeaver, or your hosting SQL editor)',
+        '',
+        '2️⃣ View the tables in your database',
+        '   Copy the exact table name',
+        '   e.g. users, orders, events',
+        '',
+        '3️⃣ Paste into the Table Name field above',
+        '   Names are case-sensitive in PostgreSQL',
+        '',
+        'Used only for Select operation. Ignored for Raw SQL.',
+        '',
+        'Example:',
+        'users'
+      ],
+      example: 'my_table'
+    },
+    query: {
+      title: 'How to get SQL Query?',
+      steps: [
+        'You write it or get it from a developer.',
+        '',
+        '• Read: SELECT * FROM table_name WHERE column = \'value\' LIMIT 10;',
+        '',
+        '• Insert: INSERT INTO table_name (col1, col2) VALUES (\'a\', \'b\');',
+        '',
+        '• Update: UPDATE table_name SET col1 = \'value\' WHERE id = 1;',
+        '',
+        '• Delete: DELETE FROM table_name WHERE id = 1;',
+        '',
+        'For complex queries (JOINs, subqueries), write or paste the full SQL. Used only for Raw SQL. Be careful with INSERT/UPDATE/DELETE—they change data.'
+      ],
+      example: 'SELECT * FROM table WHERE id = 1'
+    },
+    filters: {
+      title: 'How to get Filters (JSON)?',
+      steps: [
+        'You build the JSON from the columns and values you want to filter on.',
+        '',
+        '• Format: {"column_name": "value"}',
+        '  Use exact column names from your table.',
+        '',
+        '• Multiple conditions: {"status": "active", "role": "user"}',
+        '  Both must match (AND).',
+        '',
+        '• Numbers: {"id": 1} or {"count": 100}',
+        '',
+        'Used only for Select. For complex conditions (e.g. OR, greater than), use Raw SQL.',
+        '',
+        'Example:',
+        '{"status": "active"}'
+      ],
+      example: '{"column": "value"}'
+    },
+    limit: {
+      title: 'How to get Limit?',
+      steps: [
+        'You enter a number—how many rows you want at most.',
+        '',
+        '• Default is often 100.',
+        '',
+        '• Use a smaller value (e.g. 10 or 20) for previews or to avoid large result sets.',
+        '',
+        'Used for Select (and sometimes for Raw SQL if the platform applies it). Prevents accidentally returning too much data.',
+        '',
+        'Example:',
+        '100'
+      ],
+      example: '100'
+    },
+    orderBy: {
+      title: 'How to get Order By?',
+      steps: [
+        'You type a column name from your table (e.g. created_at, id, name).',
+        '',
+        '• Leave empty if you don’t care about order.',
+        '',
+        '• Used with Ascending to control sort direction.',
+        '',
+        'Used only for Select operation.',
+        '',
+        'Example:',
+        'created_at'
+      ],
+      example: 'created_at'
+    },
+    ascending: {
+      title: 'How to get Ascending?',
+      steps: [
+        'You set the toggle in this node: true or false.',
+        '',
+        '• true – Ascending (e.g. oldest first for dates, A–Z for text).',
+        '',
+        '• false – Descending (e.g. newest first, Z–A).',
+        '',
+        'Only applies when Order By is set. Used only for Select operation.'
+      ],
+      example: 'true'
     }
   },
   mysql: {
@@ -1581,6 +2151,86 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'Passwords are sensitive - store securely!'
       ],
       example: 'YourSecurePassword123!'
+    },
+    port: {
+      title: 'MySQL Port – Step-by-Step',
+      steps: [
+        '• Default: Use 3306. It is correct in most cases.',
+        '',
+        '• If connection fails: Check your hosting dashboard or ask your provider for the correct port.',
+        '',
+        '• Enter only the number (e.g. 3306). Do not use PostgreSQL port (5432) or other ports by mistake.',
+        '',
+        'Example:',
+        '3306'
+      ],
+      example: '3306'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Select – Simple read from one table. You fill Table Name and optionally Filters and Limit.',
+        '',
+        'This MySQL node currently supports Select only. For Insert/Update/Delete or custom SQL, use a Raw SQL-capable node.',
+      ],
+      example: 'Select'
+    },
+    table: {
+      title: 'MySQL Table Name – Step-by-Step',
+      steps: [
+        '1️⃣ Open your database admin tool',
+        '   (e.g. phpMyAdmin, MySQL Workbench, or your hosting SQL editor)',
+        '',
+        '2️⃣ View the tables in your database',
+        '   Copy the exact table name',
+        '   e.g. users, orders, events',
+        '',
+        '3️⃣ Paste into the Table Name field above',
+        '',
+        'Used only for Select operation.',
+        '',
+        'Example:',
+        'customers'
+      ],
+      example: 'my_table'
+    },
+    filters: {
+      title: 'How to get Filters (JSON)?',
+      steps: [
+        'You build the JSON from the columns and values you want to filter on.',
+        '',
+        '• Format: {"column_name": "value"}',
+        '  Use exact column names from your table.',
+        '',
+        '• Multiple conditions: {"status": "active", "role": "user"}',
+        '  Both must match (AND).',
+        '',
+        '• Numbers: {"id": 1} or {"count": 100}',
+        '',
+        'Used only for Select. For complex conditions (e.g. OR, greater than), use a Raw SQL-capable node.',
+        '',
+        'Example:',
+        '{"status": "active"}'
+      ],
+      example: '{"column": "value"}'
+    },
+    limit: {
+      title: 'How to get Limit?',
+      steps: [
+        'You enter a number—how many rows you want at most.',
+        '',
+        '• Default is often 100.',
+        '',
+        '• Use a smaller value (e.g. 10 or 20) for previews or to avoid large result sets.',
+        '',
+        'Used for Select operation. Prevents accidentally returning too much data.',
+        '',
+        'Example:',
+        '100'
+      ],
+      example: '100'
     }
   },
   mongodb: {
@@ -1617,6 +2267,67 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'mongodb://localhost:27017/mydb'
       ],
       example: 'mongodb+srv://username:password@cluster.mongodb.net/mydb'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Find Documents – Query documents from a collection using filters.',
+        '',
+        'This MongoDB node supports Find only. For insert/update/delete/aggregate, use a write-capable or raw-query MongoDB node if available.',
+      ],
+      example: 'Find'
+    },
+    collection: {
+      title: 'MongoDB Collection Name – Step-by-Step',
+      steps: [
+        '1️⃣ Open your database dashboard or MongoDB Compass',
+        '',
+        '2️⃣ Browse the database and view Collections',
+        '   Copy the exact collection name',
+        '   e.g. users, orders, events',
+        '',
+        '3️⃣ Paste into the Collection Name field above',
+        '',
+        'Example:',
+        'users'
+      ],
+      example: 'my_collection'
+    },
+    query: {
+      title: 'How to get Query (JSON)?',
+      steps: [
+        'You build the JSON filter to match the documents you want.',
+        '',
+        '• Exact match: {"status": "Active"}',
+        '',
+        '• Greater than: {"age": {"$gt": 18}}',
+        '',
+        '• Regex: {"name": {"$regex": "^John"}}',
+        '',
+        'Paste the JSON into the Query field.',
+        '',
+        'Example:',
+        '{"status": "Active"}'
+      ],
+      example: '{"field": "value"}'
+    },
+    limit: {
+      title: 'How to get Limit?',
+      steps: [
+        'You enter a number—how many documents you want at most.',
+        '',
+        '• Default is often 100.',
+        '',
+        '• Use a smaller value (e.g. 10 or 20) for previews or large collections.',
+        '',
+        'Used for Find operation.',
+        '',
+        'Example:',
+        '100'
+      ],
+      example: '100'
     }
   },
   redis: {
@@ -1930,6 +2641,116 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
       ],
       example: 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Create Page – Create a new page (requires Parent Page ID and Title).',
+        '• Update Page – Update an existing page (requires Page ID).',
+        '• Read Page – Read page content (requires Page ID).',
+        '• Delete Page – Delete or archive a page (requires Page ID).',
+        '• Query Database – Query a database (requires Database ID and optional Filter/Sorts/Page Size).',
+        '• Create Database Entry – Add a row to a database (requires Database ID and Properties).',
+        '• Update Database Entry – Update a database row (requires Page ID and Properties).'
+      ],
+      example: 'Create Page'
+    },
+    parentPageId: {
+      title: 'Notion Parent Page ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open the page where you want to create the new page',
+        '',
+        '2️⃣ Click "Share" → "Copy link"',
+        '',
+        '3️⃣ Extract the Page ID from the URL',
+        '   The Page ID is the long string at the end of the URL',
+        '',
+        '4️⃣ Paste it into the Parent Page ID field above',
+        '',
+        'Example:',
+        'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
+      ],
+      example: 'parent-page-id'
+    },
+    title: {
+      title: 'How to get Page Title?',
+      steps: [
+        'You type the page title—the name of the page you want to create.',
+        '',
+        '• Static: Type it directly, e.g. "Weekly Report".',
+        '',
+        '• Dynamic: Use data from earlier steps, e.g. "{{input.reportTitle}}".',
+        '',
+        'Required for Create Page.'
+      ],
+      example: 'Weekly Report'
+    },
+    content: {
+      title: 'How to get Page Content (JSON)?',
+      steps: [
+        'Page content is a JSON array of Notion blocks.',
+        '',
+        '• For simple text, use a paragraph block:',
+        '  [{"type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"Hello"}}]}}]',
+        '',
+        '• You can build blocks from previous steps or templates.',
+        '',
+        'Used for Create Page and Update Page.'
+      ],
+      example: '[{"type":"paragraph","paragraph":{"rich_text":[{"text":{"content":"Hello"}}]}}]'
+    },
+    properties: {
+      title: 'How to get Properties (JSON)?',
+      steps: [
+        'Properties are database fields and values for database entries.',
+        '',
+        '1️⃣ Open your database and note the property names',
+        '',
+        '2️⃣ Build a JSON object that matches those properties',
+        '   Example:',
+        '   {"Name":{"title":[{"text":{"content":"Task Name"}}]},"Status":{"select":{"name":"In Progress"}}}',
+        '',
+        'Required for Create Database Entry and Update Database Entry.'
+      ],
+      example: '{"Name":{"title":[{"text":{"content":"Task Name"}}]}}'
+    },
+    filter: {
+      title: 'How to get Database Filter (JSON)?',
+      steps: [
+        'Filters limit results when querying a database.',
+        '',
+        'Example:',
+        '{"property":"Status","select":{"equals":"Done"}}',
+        '',
+        'Use property names exactly as they appear in your database.',
+        'Use Notion filter format from API docs.'
+      ],
+      example: '{"property":"Status","select":{"equals":"Done"}}'
+    },
+    sorts: {
+      title: 'How to get Sorts (JSON)?',
+      steps: [
+        'Sorts control the order of query results.',
+        '',
+        'Example:',
+        '[{"property":"Created","direction":"descending"}]',
+        '',
+        'Use property names exactly as they appear in your database.'
+      ],
+      example: '[{"property":"Created","direction":"descending"}]'
+    },
+    pageSize: {
+      title: 'How to get Page Size?',
+      steps: [
+        'Page Size is the maximum number of results for query_database.',
+        '',
+        'Enter a number between 1 and 100.',
+        '',
+        'Default is often 100.'
+      ],
+      example: '100'
     }
   },
   airtable: {
@@ -2241,42 +3062,82 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'shpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'shpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    }
-  },
-  linkedin: {
-    organizationId: {
-      title: 'LinkedIn Organization ID (URN) – Step-by-Step',
+    },
+    operation: {
+      title: 'How to get Operation?',
       steps: [
-        '1️⃣ Go to Your Company Page',
-        '   Navigate to your LinkedIn Company Page',
-        '   Make sure you\'re an admin',
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
         '',
-        '2️⃣ Method 1: View Page Source',
-        '   Right-click on page → "View Page Source"',
-        '   Press Ctrl+F (or Cmd+F)',
-        '   Search for "organization"',
-        '   Find URN like "urn:li:organization:123456"',
-        '   Copy the full URN',
+        '• Get Product / Update Product – Requires Product ID.',
         '',
-        '3️⃣ Method 2: Use Graph API',
-        '   Go to Graph API Explorer',
-        '   Query: GET /organizationAcls',
-        '   Response will show organization URNs',
-        '   Format: urn:li:organization:123456',
+        '• List Products – Optional Limit.',
         '',
-        '4️⃣ Method 3: From Page URL',
-        '   Some pages show ID in URL',
-        '   Check the page URL structure',
+        '• Create Product – Use product data from your workflow.',
         '',
-        '5️⃣ Use the Organization ID',
-        '   Paste the full URN into the field above',
-        '   Format: urn:li:organization:123456',
-        '   Include the "urn:li:organization:" prefix',
+        '• Get Order – Requires Order ID.',
+        '',
+        '• List Orders – Optional Limit.',
+        '',
+        '• Create Order – Use order data from your workflow.',
+        '',
+        '• Get Customer – Requires Customer ID.',
+        '',
+        '• List Customers – Optional Limit.',
+      ],
+      example: 'Get Product'
+    },
+    productId: {
+      title: 'Shopify Product ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open the product in Shopify Admin',
+        '',
+        '2️⃣ Copy the numeric ID from the URL',
+        '',
+        '3️⃣ Paste it into the Product ID field',
         '',
         'Example:',
-        'urn:li:organization:123456'
+        '123456789'
       ],
-      example: 'urn:li:organization:123456'
+      example: '123456789'
+    },
+    orderId: {
+      title: 'Shopify Order ID – Step-by-Step',
+      steps: [
+        '1️⃣ Go to Orders in Shopify Admin',
+        '',
+        '2️⃣ Open the order',
+        '',
+        '3️⃣ Copy the numeric ID from the URL',
+        '',
+        'Example:',
+        '987654321'
+      ],
+      example: '987654321'
+    },
+    customerId: {
+      title: 'Shopify Customer ID – Step-by-Step',
+      steps: [
+        '1️⃣ Go to Customers in Shopify Admin',
+        '',
+        '2️⃣ Open the customer record',
+        '',
+        '3️⃣ Copy the numeric ID from the URL',
+        '',
+        'Example:',
+        '555666777'
+      ],
+      example: '555666777'
+    },
+    limit: {
+      title: 'How to get Limit?',
+      steps: [
+        'Enter how many results you want returned.',
+        '',
+        'Default is 250. Lower it for faster responses.',
+        '',
+        'Used for List Products, List Orders, and List Customers.'
+      ],
+      example: '250'
     }
   },
   // Google Services
@@ -2335,6 +3196,20 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
     }
   },
   google_calendar: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You choose this from the dropdown in the node.',
+        '',
+        '• List Events – Use when you want to retrieve events from a calendar. You need Calendar ID (default: primary).',
+        '',
+        '• Create Event – Use when you want to add a new event. You need Calendar ID, Event Title, Start Time, and End Time (and optionally Description).',
+        '',
+        '• Update Event – Use when you want to change an existing event. You need Calendar ID, Event ID, and the fields you want to change.',
+        '',
+        '• Delete Event – Use when you want to remove an event. You need Calendar ID and Event ID.'
+      ]
+    },
     calendarId: {
       title: 'Google Calendar ID – Step-by-Step',
       steps: [
@@ -2343,14 +3218,15 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '   This is the default calendar',
         '',
         '2️⃣ For Other Calendars',
-        '   Go to Google Calendar',
-        '   Click "Settings" → "Settings for my calendars"',
-        '   Click on the calendar you want',
+        '   Go to Google Calendar (calendar.google.com)',
+        '   On the left, under My calendars, find the calendar',
+        '   Click the three dots (⋮) next to the calendar name',
+        '   Click "Settings and sharing"',
         '   Scroll to "Integrate calendar"',
         '   Copy "Calendar ID"',
         '',
         '3️⃣ Calendar ID Format',
-        '   Usually an email address',
+        '   Usually an email-like address (e.g. xxx@group.calendar.google.com)',
         '   Or a long alphanumeric string',
         '',
         '4️⃣ Use the Calendar ID',
@@ -2378,9 +3254,8 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '   Format: calendar.google.com/calendar/event?eid=EVENT_ID',
         '   The ID is after eid=',
         '',
-        '4️⃣ Alternative: From API',
-        '   Use Google Calendar API',
-        '   Event ID is in API response',
+        '4️⃣ Alternative: From a previous node',
+        '   If you used List Events earlier, use the event id from the output, e.g. {{listNode.events[0].id}}',
         '',
         '5️⃣ Use the Event ID',
         '   Paste it into the Event ID field above',
@@ -2389,9 +3264,75 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'abc123def456'
       ],
       example: 'abc123def456'
+    },
+    summary: {
+      title: 'How to get Event Title?',
+      steps: [
+        'You type or set the title—it is not copied from an existing event unless you reference a previous step.',
+        '',
+        'Static title: Type it directly, e.g. "Team Standup".',
+        '',
+        'Dynamic title: If your platform supports expressions, use data from earlier steps, e.g. "Call with {{input.clientName}}" or "Review: {{input.taskName}}".',
+        '',
+        'This field is only used when Operation = Create or Update. It is ignored for List and Delete.'
+      ],
+      example: 'Meeting with Team'
+    },
+    startTime: {
+      title: 'How to get Start Time (ISO 8601)?',
+      steps: [
+        'You provide the start time in the format the platform expects (usually ISO 8601).',
+        '',
+        'Format:',
+        '   • UTC: YYYY-MM-DDTHH:mm:ssZ (e.g. 2024-01-15T14:00:00Z)',
+        '   • With offset: YYYY-MM-DDTHH:mm:ss+00:00 or -05:00',
+        '',
+        'Dynamic time: If your platform supports expressions, use a value from a previous step (e.g. {{input.startTime}}) that resolves to a valid ISO 8601 string.',
+        '',
+        'Tip: Use UTC (Z) or explicit offsets to avoid time zone confusion. Required for Create and Update.'
+      ],
+      example: '2024-01-15T10:00:00Z'
+    },
+    endTime: {
+      title: 'How to get End Time (ISO 8601)?',
+      steps: [
+        'You provide the end time in the same ISO 8601 format as Start Time.',
+        '',
+        'Format: YYYY-MM-DDTHH:mm:ssZ (UTC) or with offset (e.g. 2024-01-15T11:00:00-05:00).',
+        '',
+        'Rule: End time must be after start time. Use the same time zone (or UTC) as the start time.',
+        '',
+        'Dynamic time: If your platform supports expressions, use {{input.endTime}} or similar. Required for Create and Update.'
+      ],
+      example: '2024-01-15T11:00:00Z'
+    },
+    description: {
+      title: 'How to get Description?',
+      steps: [
+        'You type or paste the description—it is not copied from an existing event unless you reference a previous step.',
+        '',
+        'Static: Type or paste into the Description field. Line breaks are usually kept.',
+        '',
+        'Dynamic: If your platform supports expressions, use content from earlier steps, e.g. "Agenda: {{input.agenda}}" or "Attendees: {{input.attendees}}".',
+        '',
+        'This field is only used when Operation = Create or Update. Leave empty if not needed.'
+      ],
+      example: 'Event description...'
     }
   },
   google_doc: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You choose this from the dropdown in the node—you do not get it from elsewhere.',
+        '',
+        '• Read – Use when you want to extract all text from an existing document. You must fill Document ID or URL.',
+        '',
+        '• Create – Use when you want to create a new document. You must fill Document Title (and usually Content). Leave Document ID empty.',
+        '',
+        '• Update – Use when you want to add or change content in an existing document. You must fill Document ID or URL and Content.'
+      ]
+    },
     documentId: {
       title: 'Google Docs Document ID – Step-by-Step',
       steps: [
@@ -2409,16 +3350,81 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '   It\'s usually 44 characters long',
         '',
         '4️⃣ Use the Document ID',
-        '   Paste it into the Document ID field above',
-        '   Make sure the document is accessible',
+        '   Paste the full URL or just the ID into the Document ID or URL field',
+        '   Make sure the document is shared with your Google account',
         '',
         'Example:',
         '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
       ],
       example: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
+    },
+    title: {
+      title: 'How to get Document Title?',
+      steps: [
+        'You choose or type the title—it is not copied from an existing document.',
+        '',
+        'Static title: Type it directly, e.g. "Meeting Notes – Jan 15".',
+        '',
+        'Dynamic title: If your platform supports expressions, use data from earlier steps, e.g. "Report – {{input.date}}" or "Contract – {{input.clientName}}".',
+        '',
+        'This field is only used when Operation = Create. It is ignored for Read and Update.'
+      ],
+      example: 'My Document'
+    },
+    content: {
+      title: 'How to get Content?',
+      steps: [
+        'Option 1: Type or paste – Write or paste the text into the Content field. Use line breaks for new paragraphs.',
+        '',
+        'Option 2: From a previous node – If another step produced text (e.g. AI summary, report), reference it, e.g. {{aiNode.text}} or {{reportNode.content}}.',
+        '',
+        'Option 3: Template with placeholders – Mix fixed text and dynamic values, e.g. "Hello {{input.name}}, your request #{{input.id}} has been received."',
+        '',
+        'This field is only used when Operation = Create or Update. It is ignored for Read.'
+      ],
+      example: 'Document content...'
     }
   },
   google_drive: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• List Files – Use when you want to retrieve files from a folder. Set Folder ID (or leave empty for root). The node returns a list of files.',
+        '',
+        '• Upload File – Use when you want to add a new file to Drive. You need File Name and File Content (Base64). Optionally Folder ID if your platform supports uploading to a folder.',
+        '',
+        '• Download File – Use when you want to get the content of an existing file. You need File ID. The node returns the file content (e.g. Base64).',
+        '',
+        '• Delete File – Use when you want to remove a file. You need File ID only.'
+      ],
+      example: 'List Files'
+    },
+    folderId: {
+      title: 'Google Drive Folder ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open Google Drive',
+        '   Go to 👉 https://drive.google.com',
+        '   Open the folder you want to list files from (or where you want to upload)',
+        '',
+        '2️⃣ Get Folder ID from URL',
+        '   Look at the URL in your browser',
+        '   Format: drive.google.com/drive/folders/FOLDER_ID',
+        '   The ID is the long string after /folders/',
+        '',
+        '3️⃣ Copy the Folder ID',
+        '   Select and copy the entire ID—no slashes, no spaces',
+        '',
+        '4️⃣ Use the Folder ID',
+        '   Paste it into the Folder ID field above',
+        '   Leave empty to list files in the root of your Drive',
+        '',
+        'Example:',
+        '1a2b3c4d5e6f7g8h9i0j'
+      ],
+      example: '1a2b3c4d5e6f7g8h9i0j'
+    },
     fileId: {
       title: 'Google Drive File ID – Step-by-Step',
       steps: [
@@ -2439,13 +3445,104 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '   Paste it into the File ID field above',
         '   Make sure the file is accessible',
         '',
+        'Option: From a previous List Files node, use the id from the output, e.g. {{listNode.files[0].id}}',
+        '',
         'Example:',
         '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
       ],
       example: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
+    },
+    fileName: {
+      title: 'How to get File Name?',
+      steps: [
+        'You choose or type the file name—it is the name you want the file to have in Google Drive.',
+        '',
+        '• Static name: Type it directly, e.g. report.pdf, export.csv, backup.json',
+        '',
+        '• Dynamic name: If your platform supports expressions, use data from earlier steps, e.g. report_{{input.date}}.pdf or {{input.clientName}}_invoice.pdf',
+        '',
+        '• Always include the correct file extension (e.g. .pdf, .csv, .txt) so Drive and other apps recognize the file type.',
+        '',
+        'This field is only used when Operation = Upload. It is ignored for List, Download, and Delete.'
+      ],
+      example: 'report_2024-01-15.pdf'
+    },
+    fileContent: {
+      title: 'How to get File Content (Base64)?',
+      steps: [
+        'File content must be Base64-encoded—you do not type it by hand.',
+        '',
+        '• From a previous node – Use output from a step that reads or generates a file (e.g. Read File, HTTP response). Reference it, e.g. {{readFileNode.content}} or {{httpNode.body}}.',
+        '',
+        '• From a workflow expression – If your platform can encode text or binary to Base64, use that function (see your platform’s docs).',
+        '',
+        '• For testing – Encode a small file with an online Base64 encoder or a script, then paste the result. Do not paste huge content by hand.',
+        '',
+        'Format: Base64 uses letters A–Z, a–z, digits 0–9, and +, /. It may end with = for padding. No spaces or line breaks inside the string unless your platform accepts wrapped Base64.',
+        '',
+        'This field is only used when Operation = Upload. It is ignored for List, Download, and Delete.'
+      ],
+      example: 'Base64 encoded content...'
     }
   },
   google_gmail: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Send Email – Use when this node should send an email. You will fill To, Subject, and Body.',
+        '',
+        '• List Messages – Use when this node should return a list of emails (e.g. from inbox). You can optionally set Search Query and Max Results.',
+        '',
+        '• Get Message – Use when this node should fetch one email by its ID. You must fill Message ID (from Gmail URL or from a previous List/Search node).',
+        '',
+        '• Search Messages – Use when this node should find emails matching a search. Fill Search Query (and optionally Max Results).'
+      ]
+    },
+    to: {
+      title: 'How to get To?',
+      steps: [
+        'To is the recipient’s email address—not something you copy from Gmail.',
+        '',
+        'Option 1: Type it – If the recipient is fixed (e.g. support@company.com), type that address in the To field.',
+        '',
+        'Option 2: From a form or trigger – If the workflow was started by a form or webhook, the submitter’s email is often in the trigger data. Use the expression your platform provides, e.g. {{trigger.email}} or {{input.email}}.',
+        '',
+        'Option 3: From a previous node – If an earlier step (e.g. CRM, database) returned a contact email, reference it, e.g. {{previousNode.email}}.',
+        '',
+        'Format: Must be a valid email (name@domain.com). No spaces.'
+      ],
+      example: 'recipient@example.com'
+    },
+    subject: {
+      title: 'How to get Subject?',
+      steps: [
+        'You write the subject—it is not copied from Gmail or another app.',
+        '',
+        'Static subject: Type it directly, e.g. "Daily report ready".',
+        '',
+        'Dynamic subject: If your platform supports expressions, you can insert data from earlier steps, e.g. "Order #{{input.orderId}} confirmed" or "Alert: {{input.alertType}}".',
+        '',
+        'Tip: Keep it short and clear so the email is less likely to be marked as spam.'
+      ],
+      example: 'Workflow Notification'
+    },
+    body: {
+      title: 'How to get Body?',
+      steps: [
+        'Body is the main text (or HTML) of the email—the content inside the email, not the subject or recipient.',
+        '',
+        'Option 1: Type or paste – Write the message in the Body field, or paste from a document. Line breaks are kept in plain text.',
+        '',
+        'Option 2: From a previous node – If another step produced text (e.g. report, AI summary), reference it, e.g. {{reportNode.content}}.',
+        '',
+        'Option 3: Template with placeholders – Mix fixed text and dynamic values, e.g. "Hi {{input.name}}, your request #{{input.id}} has been received."',
+        '',
+        'Plain text vs HTML: Use plain text unless your platform has a separate HTML body option.'
+      ],
+      example: 'Your workflow completed successfully.'
+    },
     messageId: {
       title: 'Gmail Message ID – Step-by-Step',
       steps: [
@@ -2469,6 +3566,43 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '18c1234567890abcdef'
       ],
       example: '18c1234567890abcdef'
+    },
+    query: {
+      title: 'How to get Search Query?',
+      steps: [
+        'This is not an email address or subject—it is a search string using Gmail’s search syntax.',
+        '',
+        'Where to learn: Open Gmail, use the search box at the top, and try queries there. The same text works in this Search Query field.',
+        '',
+        'Common operators (use exactly as shown):',
+        '   • from:email@example.com – emails from this sender',
+        '   • to:email@example.com – emails to this address',
+        '   • subject:word – subject contains this word',
+        '   • is:unread – only unread',
+        '   • is:read – only read',
+        '   • has:attachment – has an attachment',
+        '   • label:LabelName – in this Gmail label',
+        '   • newer_than:7d – from the last 7 days',
+        '   • older_than:1m – older than 1 month',
+        '',
+        'Combining: Put a space between parts, e.g. from:support@company.com is:unread newer_than:3d',
+        '',
+        'Leave empty if you just want the latest messages with no filter.'
+      ],
+      example: 'from:example@gmail.com'
+    },
+    maxResults: {
+      title: 'How to get Max Results?',
+      steps: [
+        'You choose the number—it is not copied from Gmail or another field.',
+        '',
+        'What to use:',
+        '   • 10–20 – Good for most cases (e.g. “last 10 emails”).',
+        '   • 50–100 – Use only if you need more; may be slower or hit rate limits.',
+        '',
+        'This field only affects List and Search. It is ignored when Operation is Send Email or Get Message.'
+      ],
+      example: '10'
     }
   },
   // CRM Services
@@ -2871,6 +4005,366 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Get Repository / List Repositories – Get repo details or list repos. Need Owner and Repository.',
+        '',
+        '• Create Issue / Update Issue / Close Issue / List Issues / Get Issue / Add Issue Comment – Manage issues. Need Owner, Repository; for update/close/get/comment, need Issue Number.',
+        '',
+        '• Create Pull Request / Update PR / Merge PR / List PRs / Get PR / Add PR Comment – Manage pull requests. Need Owner, Repository; for update/merge/get/comment, need Pull Request Number.',
+        '',
+        '• Create Branch / List Branches / Get Branch / Delete Branch – Manage branches. Need Owner, Repository; for create/get/delete, need Branch Name or SHA.',
+        '',
+        '• Create Commit / List Commits / Get Commit – Manage commits. Need Owner, Repository; for create, need Branch/Ref, File Path, File Content, Commit Message; for get, need Commit SHA.',
+        '',
+        '• Create Release / List Releases / Get Release – Manage releases. Need Owner, Repository; for create, need Tag Name; for get, need Release ID.',
+        '',
+        '• Get Workflow Runs / Trigger Workflow – Workflow runs. Need Owner, Repository, Workflow ID (filename in .github/workflows/), Branch/Ref.',
+        '',
+        '• List Contributors – List repo contributors. Need Owner and Repository.'
+      ],
+      example: 'Create Issue'
+    },
+    owner: {
+      title: 'GitHub Owner/Organization – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository in the browser',
+        '',
+        '2️⃣ Look at the URL',
+        '   Format: https://github.com/OWNER/repo-name',
+        '   OWNER is the first part after github.com/',
+        '',
+        '3️⃣ Copy the owner name',
+        '   It is the username or organization name (e.g. octocat, microsoft)',
+        '   No slashes, no repository name',
+        '',
+        '4️⃣ Paste into the Owner/Organization field above',
+        '',
+        'Example: For github.com/octocat/Hello-World, Owner is octocat'
+      ],
+      example: 'octocat'
+    },
+    repo: {
+      title: 'GitHub Repository Name – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository in the browser',
+        '',
+        '2️⃣ Look at the URL',
+        '   Format: https://github.com/owner/REPO-NAME',
+        '   REPO-NAME is the second part after the owner',
+        '',
+        '3️⃣ Copy the repository name',
+        '   Do not include .git (use Hello-World, not Hello-World.git)',
+        '',
+        '4️⃣ Paste into the Repository field above',
+        '',
+        'Example: For github.com/octocat/Hello-World, Repository is Hello-World'
+      ],
+      example: 'Hello-World'
+    },
+    title: {
+      title: 'How to get Title?',
+      steps: [
+        'You type or provide the title—it is the headline for the issue or pull request.',
+        '',
+        '• Static: Type it directly, e.g. "Bug in login page", "Add API documentation"',
+        '',
+        '• Dynamic: If your platform supports expressions, use data from earlier steps, e.g. {{input.subject}} or "Deploy: {{trigger.env}}"',
+        '',
+        'Required for Create Issue and Create Pull Request. Ignored for other operations.'
+      ],
+      example: 'Bug in login page'
+    },
+    body: {
+      title: 'How to get Body?',
+      steps: [
+        'You type or provide the body—the description of the issue or pull request. Markdown supported.',
+        '',
+        '• Static: Type or paste directly. You can use Markdown (headers, lists, code blocks).',
+        '',
+        '• Dynamic: Use an expression from a previous step, e.g. {{aiNode.summary}} or {{trigger.body}}',
+        '',
+        'Required for Create Issue and Create Pull Request. Ignored for other operations.'
+      ],
+      example: 'Issue/PR description'
+    },
+    workflowId: {
+      title: 'GitHub Workflow ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository',
+        '',
+        '2️⃣ Go to .github/workflows/ folder',
+        '   Or click Actions → Workflows',
+        '',
+        '3️⃣ The Workflow ID is the filename',
+        '   e.g. deploy.yml, ci.yml',
+        '',
+        '4️⃣ Copy the filename (including .yml or .yaml)',
+        '',
+        '5️⃣ Paste into the Workflow ID field above',
+        '',
+        'Example: deploy.yml'
+      ],
+      example: 'deploy.yml'
+    },
+    ref: {
+      title: 'GitHub Branch/Ref – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository',
+        '',
+        '2️⃣ Click the branch dropdown',
+        '   It shows the current branch (e.g. main, master)',
+        '',
+        '3️⃣ Copy the branch name you want',
+        '   e.g. main, develop, feature-branch',
+        '',
+        '4️⃣ Paste into the Branch/Ref field above',
+        '',
+        'Used for Trigger Workflow (which branch to run on), Create Commit (which branch to commit to), etc. Default is often main.',
+        '',
+        'Example: main'
+      ],
+      example: 'main'
+    },
+    issueNumber: {
+      title: 'GitHub Issue Number – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository',
+        '',
+        '2️⃣ Click the Issues tab',
+        '',
+        '3️⃣ Open the issue you want',
+        '',
+        '4️⃣ Look at the URL',
+        '   Format: github.com/owner/repo/issues/123',
+        '   The number after /issues/ is the Issue Number',
+        '',
+        '5️⃣ Or look at the issue title',
+        '   It shows #123 — the number is 123',
+        '',
+        '6️⃣ Enter only the number (e.g. 123), not #123',
+        '',
+        'Example: 123'
+      ],
+      example: '123'
+    },
+    prNumber: {
+      title: 'GitHub Pull Request Number – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository',
+        '',
+        '2️⃣ Click the Pull requests tab',
+        '',
+        '3️⃣ Open the pull request you want',
+        '',
+        '4️⃣ Look at the URL',
+        '   Format: github.com/owner/repo/pull/456',
+        '   The number after /pull/ is the PR Number',
+        '',
+        '5️⃣ Or look at the PR title',
+        '   It shows #456 — the number is 456',
+        '',
+        '6️⃣ Enter only the number (e.g. 456), not #456',
+        '',
+        'Example: 456'
+      ],
+      example: '456'
+    },
+    state: {
+      title: 'How to get State?',
+      steps: [
+        'You choose from the dropdown in this node: Open or Closed.',
+        '',
+        '• Open – Issue is open.',
+        '• Closed – Issue is closed.',
+        '',
+        'Used for Update Issue (e.g. to close or reopen). Ignored for other operations.'
+      ],
+      example: 'open'
+    },
+    comment: {
+      title: 'How to get Comment?',
+      steps: [
+        'You type or provide the comment—the text that will appear on the issue or pull request.',
+        '',
+        '• Static: Type or paste directly.',
+        '',
+        '• Dynamic: Use an expression, e.g. {{aiNode.summary}} or "Deployment completed at {{now}}"',
+        '',
+        'Required for Add Issue Comment and Add PR Comment. Ignored for other operations.'
+      ],
+      example: 'Your comment text'
+    },
+    mergeMethod: {
+      title: 'How to get Merge Method?',
+      steps: [
+        'You choose from the dropdown in this node: Merge, Squash, or Rebase.',
+        '',
+        '• Merge – Creates a merge commit.',
+        '• Squash – Combines all commits into one.',
+        '• Rebase – Replays commits on top of the base branch.',
+        '',
+        'Used only for Merge Pull Request. Ignored for other operations.'
+      ],
+      example: 'merge'
+    },
+    branchName: {
+      title: 'How to get Branch Name?',
+      steps: [
+        'You type the branch name—the name you want for the new branch, or the name of the branch to get/delete.',
+        '',
+        '• Static: Type it directly, e.g. feature-ai, fix/login-bug',
+        '',
+        '• Dynamic: Use an expression, e.g. {{input.branch}} or feature-{{trigger.id}}',
+        '',
+        'Used for Create Branch, Get Branch, Delete Branch. Ignored for other operations.'
+      ],
+      example: 'feature-branch'
+    },
+    sha: {
+      title: 'GitHub SHA/Commit Hash – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository',
+        '',
+        '2️⃣ Click Commits (or the commit history)',
+        '',
+        '3️⃣ Click on a commit to open its details',
+        '',
+        '4️⃣ The SHA is the long hash at the top',
+        '   40 characters (e.g. abc123def456789...)',
+        '   You can also use the short SHA (first 7–12 characters)',
+        '',
+        '5️⃣ Copy and paste into the SHA/Commit Hash field above',
+        '',
+        'From command line: run "git log" and copy the commit hash.',
+        '',
+        'Example: abc123def456789...'
+      ],
+      example: 'abc123def456'
+    },
+    commitMessage: {
+      title: 'How to get Commit Message?',
+      steps: [
+        'You type or provide the message—a short description of the change.',
+        '',
+        '• Static: Type it directly, e.g. "Updated documentation", "Fix login bug"',
+        '',
+        '• Dynamic: Use an expression, e.g. "Deploy {{trigger.env}}" or {{aiNode.summary}}',
+        '',
+        'Required for Create Commit. Ignored for other operations.'
+      ],
+      example: 'Updated documentation'
+    },
+    filePath: {
+      title: 'GitHub File Path – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository and navigate to the file (or where you want to create it)',
+        '',
+        '2️⃣ Look at the URL or breadcrumb',
+        '   The path after the branch name is the File Path',
+        '   e.g. docs/readme.md, src/utils.js',
+        '',
+        '3️⃣ Or build it: folder(s) + filename',
+        '   Use forward slashes (/). No leading slash.',
+        '',
+        '4️⃣ Paste into the File Path field above',
+        '',
+        'Example: docs/readme.md'
+      ],
+      example: 'docs/readme.md'
+    },
+    fileContent: {
+      title: 'How to get File Content?',
+      steps: [
+        'You provide the content—the exact text or bytes to write to the file.',
+        '',
+        '• From a previous step: Use output from another node (e.g. generated doc, report), e.g. {{aiNode.content}} or {{readFileNode.content}}.',
+        '',
+        '• Static: Type or paste text. For binary files, the platform may require base64; use a step that outputs base64 if needed.',
+        '',
+        'Required for Create Commit when creating/updating a file. Ignored for other operations.'
+      ],
+      example: 'File content (base64 or text)'
+    },
+    tagName: {
+      title: 'How to get Tag Name?',
+      steps: [
+        'You type the tag name—the version or tag you want for the release.',
+        '',
+        '• Static: Type it directly, e.g. v1.0.0, v2.1.3',
+        '',
+        '• Dynamic: Use an expression, e.g. v{{input.version}} or release-{{trigger.env}}',
+        '',
+        'Required for Create Release. Ignored for other operations.'
+      ],
+      example: 'v1.0.0'
+    },
+    releaseName: {
+      title: 'How to get Release Name?',
+      steps: [
+        'You type the release name—the human-readable title shown on the Releases page.',
+        '',
+        '• Static: Type it directly, e.g. "Release v1.0.0", "January 2024 Release"',
+        '',
+        '• Dynamic: Use an expression if your platform supports it.',
+        '',
+        'Used for Create Release. Ignored for other operations.'
+      ],
+      example: 'Release v1.0.0'
+    },
+    releaseBody: {
+      title: 'How to get Release Body?',
+      steps: [
+        'You type or provide the release notes—the description shown on the release page. Markdown supported.',
+        '',
+        '• Static: Type or paste. You can use Markdown (headers, lists).',
+        '',
+        '• Dynamic: Use an expression, e.g. {{changelogNode.markdown}} or "Built from {{trigger.branch}}"',
+        '',
+        'Used for Create Release. Ignored for other operations.'
+      ],
+      example: 'Release notes and description'
+    },
+    releaseId: {
+      title: 'GitHub Release ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository',
+        '',
+        '2️⃣ Click Releases (right sidebar or repo → Releases)',
+        '',
+        '3️⃣ Click on a release to view details',
+        '',
+        '4️⃣ The Release ID is a numeric ID from the API',
+        '   Use List Releases first; each release in the response has an "id" field',
+        '   Or call GitHub API: GET /repos/owner/repo/releases and copy the "id" of the release you want',
+        '',
+        '5️⃣ Paste into the Release ID field above',
+        '',
+        'Example: 12345'
+      ],
+      example: '12345'
+    },
+    commitSha: {
+      title: 'GitHub Commit SHA – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitHub repository',
+        '',
+        '2️⃣ Click Commits or go to a specific commit',
+        '',
+        '3️⃣ The commit SHA is the long hash shown',
+        '   e.g. abc123def456789... (full 40 chars or short 7–12)',
+        '',
+        '4️⃣ Copy and paste into the Commit SHA field above',
+        '',
+        'You can also get it from a previous List Commits or Create Commit response (sha field).',
+        '',
+        'Example: abc123def456'
+      ],
+      example: 'abc123def456'
     }
   },
   // E-commerce
@@ -3008,6 +4502,80 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Get Product – Requires Product ID.',
+        '',
+        '• List Products – Optional Limit.',
+        '',
+        '• Create Product – Use product data from your workflow.',
+        '',
+        '• Update Product – Requires Product ID.',
+        '',
+        '• Get Order – Requires Order ID.',
+        '',
+        '• List Orders – Optional Limit.',
+        '',
+        '• Get Customer – Requires Customer ID.',
+      ],
+      example: 'Get Product'
+    },
+    productId: {
+      title: 'BigCommerce Product ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open the product in BigCommerce',
+        '',
+        '2️⃣ Copy the numeric ID from the URL',
+        '',
+        '3️⃣ Paste it into the Product ID field',
+        '',
+        'Example:',
+        '123'
+      ],
+      example: '123'
+    },
+    orderId: {
+      title: 'BigCommerce Order ID – Step-by-Step',
+      steps: [
+        '1️⃣ Go to Orders in BigCommerce',
+        '',
+        '2️⃣ Open the order',
+        '',
+        '3️⃣ Copy the numeric ID from the URL or order details',
+        '',
+        'Example:',
+        '456'
+      ],
+      example: '456'
+    },
+    customerId: {
+      title: 'BigCommerce Customer ID – Step-by-Step',
+      steps: [
+        '1️⃣ Go to Customers in BigCommerce',
+        '',
+        '2️⃣ Open the customer record',
+        '',
+        '3️⃣ Copy the numeric ID from the URL',
+        '',
+        'Example:',
+        '789'
+      ],
+      example: '789'
+    },
+    limit: {
+      title: 'How to get Limit?',
+      steps: [
+        'Enter how many results you want returned.',
+        '',
+        'Default is 250. Lower it for faster responses.',
+        '',
+        'Used for List Products and List Orders.'
+      ],
+      example: '250'
     }
   },
   magento: {
@@ -3419,6 +4987,20 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
       ],
       example: 'ftp.yourdomain.com'
     },
+    port: {
+      title: 'FTP Port – Step-by-Step',
+      steps: [
+        'Use the port provided by your FTP server.',
+        '',
+        'Common ports:',
+        '• 21 – Standard FTP',
+        '• 990 – FTPS (FTP over TLS/SSL)',
+        '• 2121 – Custom port (if configured)',
+        '',
+        'If unsure, use 21 or ask your hosting provider.'
+      ],
+      example: '21'
+    },
     username: {
       title: 'FTP Username – Step-by-Step',
       steps: [
@@ -3451,6 +5033,50 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'Passwords are sensitive - store securely!'
       ],
       example: 'YourSecurePassword123!'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Get File – Download a file (requires Remote Path).',
+        '',
+        '• Put File – Upload a file (requires Remote Path + Content).',
+        '',
+        '• List Files – List files in a directory (requires Remote Path).',
+        '',
+        '• Delete File – Delete a file (requires Remote Path).'
+      ],
+      example: 'Get File'
+    },
+    remotePath: {
+      title: 'How to get Remote Path?',
+      steps: [
+        'Remote Path is the file or folder location on the FTP server.',
+        '',
+        'For Get/Put/Delete: use the full file path.',
+        'For List: use a folder path.',
+        '',
+        'Examples:',
+        '/files/data.txt',
+        '/var/www/uploads/',
+        'files/backup.zip'
+      ],
+      example: '/files/data.txt'
+    },
+    content: {
+      title: 'How to get Content (for Put)?',
+      steps: [
+        'Provide the file content you want to upload.',
+        '',
+        '• Text files: paste plain text.',
+        '• Binary files: use base64 encoding.',
+        '',
+        'Examples:',
+        'Hello World',
+        'base64-encoded string for a PDF or image'
+      ],
+      example: 'Hello World'
     }
   },
   sftp: {
@@ -3472,6 +5098,19 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'your-server.com'
       ],
       example: 'sftp.yourdomain.com'
+    },
+    port: {
+      title: 'SFTP Port – Step-by-Step',
+      steps: [
+        'Use the port provided by your SFTP server.',
+        '',
+        'Common ports:',
+        '• 22 – Standard SFTP (SSH)',
+        '• 2222 – Custom port (if configured)',
+        '',
+        'If unsure, use 22 or ask your server admin.'
+      ],
+      example: '22'
     },
     username: {
       title: 'SFTP Username – Step-by-Step',
@@ -3503,6 +5142,68 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'Passwords are sensitive - store securely!'
       ],
       example: 'YourSecurePassword123!'
+    },
+    privateKey: {
+      title: 'SFTP Private Key – Step-by-Step',
+      steps: [
+        'Use this only for key-based authentication.',
+        '',
+        '1️⃣ Locate your private key file',
+        '   Common file names: id_rsa, id_ed25519, *.pem, *.ppk',
+        '',
+        '2️⃣ Open the private key file',
+        '   Copy the full content including header/footer',
+        '   Example header: -----BEGIN RSA PRIVATE KEY-----',
+        '',
+        '3️⃣ Paste it into the Private Key field above',
+        '',
+        'Make sure the matching public key is in the server\'s authorized_keys.'
+      ],
+      example: '-----BEGIN RSA PRIVATE KEY-----'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Get File – Download a file (requires Remote Path).',
+        '',
+        '• Put File – Upload a file (requires Remote Path + Content).',
+        '',
+        '• List Files – List files in a directory (requires Remote Path).',
+        '',
+        '• Delete File – Delete a file (requires Remote Path).'
+      ],
+      example: 'Get File'
+    },
+    remotePath: {
+      title: 'How to get Remote Path?',
+      steps: [
+        'Remote Path is the file or folder location on the SFTP server.',
+        '',
+        'For Get/Put/Delete: use the full file path.',
+        'For List: use a folder path.',
+        '',
+        'Examples:',
+        '/files/data.txt',
+        '/var/www/uploads/',
+        '~/backup.zip'
+      ],
+      example: '/files/data.txt'
+    },
+    content: {
+      title: 'How to get Content (for Put)?',
+      steps: [
+        'Provide the file content you want to upload.',
+        '',
+        '• Text files: paste plain text.',
+        '• Binary files: use base64 encoding.',
+        '',
+        'Examples:',
+        'Hello World',
+        'base64-encoded string for a PDF or image'
+      ],
+      example: 'Hello World'
     }
   },
   minio: {
@@ -3649,6 +5350,407 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'ya29.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'ya29.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Upload Video – Requires Video URL, Title, and optional Description/Tags/Privacy.',
+        '',
+        '• Update Video Metadata – Requires Video ID and new Title/Description/Tags.',
+        '',
+        '• Delete Video – Requires Video ID.',
+        '',
+        '• Get Channel Details – Requires Channel ID (or "mine").',
+        '',
+        '• Get Video Statistics – Requires Video ID.',
+        '',
+        '• Search Videos – Requires Search Query (optional Max Results).',
+        '',
+        '• Get Comments – Requires Video ID (optional Max Results).',
+        '',
+        '• Reply to Comment – Requires Comment ID and Comment Text.'
+      ],
+      example: 'Upload Video'
+    },
+    videoUrl: {
+      title: 'How to get Video URL?',
+      steps: [
+        'Upload the video file to a public host (CDN, cloud storage, file server).',
+        '',
+        'Copy the direct HTTPS URL to the video file.',
+        '',
+        'Supported formats: MP4, MOV, AVI.',
+        '',
+        'Example:',
+        'https://example.com/video.mp4'
+      ],
+      example: 'https://example.com/video.mp4'
+    },
+    title: {
+      title: 'How to get Video Title?',
+      steps: [
+        'This is the title shown on YouTube.',
+        '',
+        '• Type it directly.',
+        '',
+        '• Or map from earlier steps (e.g. "{{input.title}}").',
+        '',
+        'Max length is 100 characters.'
+      ],
+      example: 'My Video Title'
+    },
+    description: {
+      title: 'How to get Video Description?',
+      steps: [
+        'This text appears below the video.',
+        '',
+        '• Type it directly.',
+        '',
+        '• Or map from earlier steps (e.g. "{{input.description}}").',
+        '',
+        'Optional for uploads and updates.'
+      ],
+      example: 'Video description with keywords'
+    },
+    tags: {
+      title: 'How to get Tags (comma-separated)?',
+      steps: [
+        'Enter keywords separated by commas.',
+        '',
+        'Example: tutorial, automation, workflow',
+        '',
+        'Total length across all tags should be under 500 characters.'
+      ],
+      example: 'tutorial, automation, workflow'
+    },
+    videoId: {
+      title: 'YouTube Video ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open the video in a browser',
+        '',
+        '2️⃣ Copy the value after v= in the URL',
+        '',
+        '3️⃣ Or use the ID returned when you upload or search videos',
+        '',
+        'Example:',
+        'dQw4w9WgXcQ'
+      ],
+      example: 'dQw4w9WgXcQ'
+    },
+    channelId: {
+      title: 'YouTube Channel ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open your channel page',
+        '',
+        '2️⃣ If the URL is youtube.com/channel/CHANNEL_ID, copy the ID',
+        '',
+        '3️⃣ If you are authenticated, you can use "mine" for your channel',
+        '',
+        'Example:',
+        'UCxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      ],
+      example: 'UCxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    query: {
+      title: 'How to get Search Query?',
+      steps: [
+        'Type the keywords you want to search for.',
+        '',
+        'Example:',
+        'workflow automation tutorial'
+      ],
+      example: 'workflow automation tutorial'
+    },
+    commentText: {
+      title: 'How to get Comment Text?',
+      steps: [
+        'Type the reply you want to post.',
+        '',
+        'You can also map text from earlier steps.',
+        '',
+        'Required for Reply to Comment.'
+      ],
+      example: 'Thanks for watching!'
+    },
+    commentId: {
+      title: 'YouTube Comment ID – Step-by-Step',
+      steps: [
+        '1️⃣ Use "Get Comments" to list comments for a video',
+        '',
+        '2️⃣ Copy the "id" field from the comment you want to reply to',
+        '',
+        '3️⃣ Paste it here',
+        '',
+        'Example:',
+        'Ugxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      ],
+      example: 'Ugxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    maxResults: {
+      title: 'How to get Max Results?',
+      steps: [
+        'Enter how many results to return.',
+        '',
+        'Allowed range is 1–50.',
+        '',
+        'Used for Search Videos and Get Comments.'
+      ],
+      example: '10'
+    },
+    privacyStatus: {
+      title: 'How to get Privacy Status?',
+      steps: [
+        'Choose the visibility for the uploaded video.',
+        '',
+        '• public – visible to everyone',
+        '• unlisted – visible to anyone with the link',
+        '• private – visible only to you',
+        '',
+        'Used for Upload Video.'
+      ],
+      example: 'public'
+    }
+  },
+  // XML
+  xml: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Parse – Convert XML into JSON-like output.',
+        '',
+        '• Extract – Use XPath to pull specific values (requires XPath Expression).',
+        '',
+        '• Validate – Check that the XML is well‑formed.'
+      ],
+      example: 'Parse'
+    },
+    xml: {
+      title: 'How to get XML Content?',
+      steps: [
+        'Paste the XML text you want to process.',
+        '',
+        'You can also map from a previous step, e.g. "{{input.xml}}".',
+        '',
+        'Examples:',
+        '<root><item>value</item></root>',
+        '<order><id>123</id></order>'
+      ],
+      example: '<root><item>value</item></root>'
+    },
+    xpath: {
+      title: 'How to get XPath Expression?',
+      steps: [
+        'Use XPath to select the data you need.',
+        '',
+        'Examples:',
+        '• /root/item',
+        '• /root/item[1]',
+        '• /root/item[@id="1"]',
+        '• //item',
+        '• /root/item/text()'
+      ],
+      example: '/root/item'
+    },
+    safeMode: {
+      title: 'How to get Safe Mode?',
+      steps: [
+        'Safe Mode protects against unsafe XML features (XXE, entity expansion).',
+        '',
+        'Keep this enabled unless you fully trust the XML source.'
+      ],
+      example: 'true'
+    },
+    maxSize: {
+      title: 'How to get Max Size (bytes)?',
+      steps: [
+        'Set the maximum XML size you want to process.',
+        '',
+        'Default is 10 MB (10485760).',
+        '',
+        'Increase for larger files or decrease for stricter limits.',
+        '',
+        'Examples:',
+        '1048576 (1 MB)',
+        '10485760 (10 MB)',
+        '52428800 (50 MB)'
+      ],
+      example: '10485760'
+    }
+  },
+  // PDF
+  pdf: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Extract Text – Read the text content from the PDF.',
+        '',
+        '• Read Metadata – Read PDF details like title, author, and created date.'
+      ],
+      example: 'Extract Text'
+    },
+    pdfUrl: {
+      title: 'How to get PDF URL/Base64?',
+      steps: [
+        'Provide the PDF as a public URL or a Base64 data URI.',
+        '',
+        'URL option:',
+        '• Upload the PDF to a public location (cloud storage or file server).',
+        '• Copy the direct HTTPS link to the PDF file.',
+        '',
+        'Base64 option:',
+        '• Convert the PDF to Base64.',
+        '• Prefix with: data:application/pdf;base64,',
+        '',
+        'Examples:',
+        'https://example.com/document.pdf',
+        'data:application/pdf;base64,JVBERi0xLjQK...'
+      ],
+      example: 'https://example.com/document.pdf'
+    },
+    maxSize: {
+      title: 'How to get Max Size (bytes)?',
+      steps: [
+        'Set the maximum size of PDF you want to process.',
+        '',
+        'Default is 10 MB (10485760).',
+        '',
+        'Increase for larger PDFs, or lower it to prevent heavy processing.',
+        '',
+        'Examples:',
+        '1048576 (1 MB)',
+        '10485760 (10 MB)',
+        '52428800 (50 MB)'
+      ],
+      example: '10485760'
+    }
+  },
+  // Date & Time
+  date_time: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Format – Format a date into a specific output (ISO, Timestamp, Locale, or Custom).',
+        '',
+        '• Add – Add time to a base date (requires Value + Unit).',
+        '',
+        '• Subtract – Subtract time from a base date (requires Value + Unit).',
+        '',
+        '• Difference – Calculate the time difference between dates.',
+        '',
+        '• Now – Get the current date/time.',
+        '',
+        '• Convert Timezone – Convert a date into another time zone.',
+        '',
+        '• Get Timezone Info – Return details about a time zone.',
+      ],
+      example: 'Format'
+    },
+    date: {
+      title: 'How to get Date (ISO)?',
+      steps: [
+        'Provide the base date in ISO 8601 format.',
+        '',
+        'You can type it directly or map it from a previous step (e.g. "{{input.date}}").',
+        '',
+        'Examples:',
+        '• 2024-01-15',
+        '• 2024-01-15T10:30:00Z',
+        '• 2024-01-15T10:30:00+05:30',
+        '',
+        'Leave empty to use the current date/time.'
+      ],
+      example: '2024-01-15T10:30:00Z'
+    },
+    timezone: {
+      title: 'How to get Timezone (IANA)?',
+      steps: [
+        'Use an IANA timezone identifier.',
+        '',
+        'Common examples:',
+        '• UTC',
+        '• America/New_York',
+        '• Europe/London',
+        '• Asia/Kolkata',
+        '',
+        'You can find your timezone in system settings or search "my time zone".'
+      ],
+      example: 'America/New_York'
+    },
+    format: {
+      title: 'How to get Format?',
+      steps: [
+        'Choose how the output should look:',
+        '',
+        '• ISO – Standard ISO 8601 string.',
+        '• Timestamp – Unix timestamp in milliseconds.',
+        '• Locale Date – Uses Locale field for language/region.',
+        '• Custom – Uses the Custom Format field.',
+      ],
+      example: 'ISO'
+    },
+    locale: {
+      title: 'How to get Locale?',
+      steps: [
+        'Locale is used only when Format = Locale Date.',
+        '',
+        'Use language-REGION codes such as:',
+        '• en-US',
+        '• en-GB',
+        '• fr-FR',
+        '• de-DE',
+        '• ja-JP',
+      ],
+      example: 'en-US'
+    },
+    value: {
+      title: 'How to get Value?',
+      steps: [
+        'Enter the number of units to add or subtract.',
+        '',
+        'Examples:',
+        '• 1 = one unit',
+        '• 7 = seven units',
+        '• -5 = subtract five units',
+        '',
+        'Used only for Add/Subtract operations.'
+      ],
+      example: '3'
+    },
+    unit: {
+      title: 'How to get Unit?',
+      steps: [
+        'Choose the unit that matches your calculation:',
+        '',
+        'Seconds, Minutes, Hours, Days, Weeks, Months, Years.',
+        '',
+        'Used only for Add/Subtract operations.'
+      ],
+      example: 'days'
+    },
+    customFormat: {
+      title: 'How to get Custom Format?',
+      steps: [
+        'Use format tokens for custom output:',
+        '',
+        '• YYYY = year',
+        '• MM = month',
+        '• DD = day',
+        '• HH = hours (24h)',
+        '• mm = minutes',
+        '• ss = seconds',
+        '',
+        'Example:',
+        'YYYY-MM-DD HH:mm:ss'
+      ],
+      example: 'YYYY-MM-DD HH:mm:ss'
     }
   },
   // Kubernetes
@@ -4180,6 +6282,317 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'glpat-xxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'glpat-xxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    baseUrl: {
+      title: 'GitLab URL (Base URL) – Step-by-Step',
+      steps: [
+        '• GitLab.com: Leave as https://gitlab.com (or the default value).',
+        '',
+        '• Self-hosted: Open your GitLab in the browser and copy the domain from the address bar.',
+        '  Example: https://gitlab.company.com',
+        '  Do not include path or trailing slash.',
+        '',
+        'Paste it into the GitLab URL field above.'
+      ],
+      example: 'https://gitlab.com'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Get Project / List Projects – Get project details or list projects. Need Project ID for get.',
+        '',
+        '• Create Issue / Update Issue / Close Issue / List Issues / Get Issue – Manage issues. Need Project ID; for update/close/get, need Issue IID.',
+        '',
+        '• Create Merge Request / Update MR / Approve MR / Merge MR / List MRs / Get MR – Manage merge requests. Need Project ID; for create, need Source Branch, Target Branch, Title, Description; for update/approve/merge/get, need Merge Request IID.',
+        '',
+        '• Trigger Pipeline / Get Pipeline / List Pipelines / Get Pipeline Jobs / Get Job Log – Pipelines. Need Project ID; for trigger, need Trigger Token and Branch/Ref; for get pipeline/jobs, need Pipeline ID; for job log, need Job ID.',
+        '',
+        '• Create Branch / List Branches / Delete Branch – Manage branches. Need Project ID; for create/delete, need Branch Name; for create, need Ref/Branch as source.',
+        '',
+        '• Get File / Create File / Update File / Delete File – File operations. Need Project ID, Branch Name, File Path; for create/update, need File Content and Commit Message.'
+      ],
+      example: 'Create Issue'
+    },
+    projectId: {
+      title: 'GitLab Project ID – Step-by-Step',
+      steps: [
+        'Method 1 – Numeric ID:',
+        '1. Open your GitLab project in the browser',
+        '2. Go to Settings → General',
+        '3. Under "Project ID", copy the numeric ID (e.g. 12345)',
+        '4. Paste into the Project ID field above',
+        '',
+        'Method 2 – Path:',
+        '1. Look at the project URL: https://gitlab.com/group/project-name',
+        '2. The path is group/project-name (or username/project-name)',
+        '3. Use that as Project ID, e.g. mygroup/myproject',
+        '4. Some setups require URL-encoding the slash (mygroup%2Fmyproject)',
+        '',
+        'Example: 12345 or mygroup/myproject'
+      ],
+      example: '12345 or group/project'
+    },
+    title: {
+      title: 'How to get Title?',
+      steps: [
+        'You type or provide the title—the headline for the issue or merge request.',
+        '',
+        '• Static: Type it directly, e.g. "Login Bug", "Add API documentation"',
+        '',
+        '• Dynamic: If your platform supports expressions, use data from earlier steps, e.g. {{input.subject}} or "Deploy: {{trigger.env}}"',
+        '',
+        'Required for Create Issue and Create Merge Request. Ignored for other operations.'
+      ],
+      example: 'Login Bug'
+    },
+    description: {
+      title: 'How to get Description?',
+      steps: [
+        'You type or provide the description—the detailed explanation of the issue or merge request. Markdown supported.',
+        '',
+        '• Static: Type or paste directly. You can use Markdown.',
+        '',
+        '• Dynamic: Use an expression from a previous step, e.g. {{aiNode.summary}} or {{trigger.body}}',
+        '',
+        'Required for Create Issue and Create Merge Request. Ignored for other operations.'
+      ],
+      example: 'Issue/MR description'
+    },
+    sourceBranch: {
+      title: 'How to get Source Branch?',
+      steps: [
+        'You type the branch name—the branch that contains your changes (the "source" of the merge request).',
+        '',
+        '• Static: Type it directly, e.g. feature-ai, fix/login-bug',
+        '',
+        '• Dynamic: Use an expression if your workflow created the branch earlier, e.g. {{createBranchNode.name}}',
+        '',
+        'In the project, open the branch dropdown and copy the branch name to confirm.',
+        '',
+        'Required for Create Merge Request. Ignored for other operations.'
+      ],
+      example: 'feature-branch'
+    },
+    targetBranch: {
+      title: 'How to get Target Branch?',
+      steps: [
+        'You type the branch name—the branch you want to merge into (usually main or master).',
+        '',
+        '• Static: Type it directly, e.g. main, master, develop',
+        '',
+        'In the project, open the branch dropdown; the default branch is often shown first. Copy that name.',
+        '',
+        'Required for Create Merge Request. Ignored for other operations.'
+      ],
+      example: 'main'
+    },
+    triggerToken: {
+      title: 'GitLab Trigger Token – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitLab project',
+        '',
+        '2️⃣ Go to Settings → CI/CD',
+        '',
+        '3️⃣ Expand "Pipeline triggers" section',
+        '',
+        '4️⃣ Click "Add trigger" (or use an existing one)',
+        '',
+        '5️⃣ Give it a description and click "Create trigger"',
+        '',
+        '6️⃣ Copy the "Trigger token" value shown',
+        '   This is different from your Personal Access Token—it is used only to trigger pipelines for this project',
+        '',
+        '7️⃣ Paste into the Trigger Token field above'
+      ],
+      example: 'Your pipeline trigger token'
+    },
+    ref: {
+      title: 'GitLab Branch/Ref – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitLab project',
+        '',
+        '2️⃣ Click the branch dropdown',
+        '   Copy the branch name you want (e.g. main, develop)',
+        '',
+        '3️⃣ Paste into the Branch/Ref (or Ref/Branch) field above',
+        '',
+        'Used for Trigger Pipeline (which branch to run on), Create Branch (source ref), List Branches, and file operations. Default is often main.',
+        '',
+        'Example: main'
+      ],
+      example: 'main'
+    },
+    pipelineId: {
+      title: 'GitLab Pipeline ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitLab project',
+        '',
+        '2️⃣ Go to CI/CD → Pipelines',
+        '',
+        '3️⃣ Click on a pipeline to open its details',
+        '',
+        '4️⃣ Look at the URL',
+        '   Format: .../pipelines/12345',
+        '   The number after /pipelines/ is the Pipeline ID',
+        '',
+        '5️⃣ Or use List Pipelines first; each pipeline in the response has an "id" field',
+        '',
+        '6️⃣ Paste into the Pipeline ID field above',
+        '',
+        'Example: 12345'
+      ],
+      example: '12345'
+    },
+    issueIid: {
+      title: 'GitLab Issue IID – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitLab project',
+        '',
+        '2️⃣ Click Issues',
+        '',
+        '3️⃣ Open the issue you want',
+        '',
+        '4️⃣ Look at the URL',
+        '   Format: .../issues/123',
+        '   The number after /issues/ is the Issue IID',
+        '',
+        '5️⃣ Or look at the issue title',
+        '   It shows #123 — the number is 123',
+        '',
+        '6️⃣ Enter only the number (e.g. 123), not #123',
+        '',
+        'Example: 123'
+      ],
+      example: '123'
+    },
+    mrIid: {
+      title: 'GitLab Merge Request IID – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitLab project',
+        '',
+        '2️⃣ Click Merge Requests',
+        '',
+        '3️⃣ Open the merge request you want',
+        '',
+        '4️⃣ Look at the URL',
+        '   Format: .../merge_requests/456',
+        '   The number after /merge_requests/ is the MR IID',
+        '',
+        '5️⃣ Or look at the MR title',
+        '   It often shows !456 — the number is 456',
+        '',
+        '6️⃣ Enter only the number (e.g. 456)',
+        '',
+        'Example: 456'
+      ],
+      example: '456'
+    },
+    stateEvent: {
+      title: 'How to get State Event?',
+      steps: [
+        'You choose from the dropdown in this node: Close or Reopen.',
+        '',
+        '• Close – Marks the issue or merge request as closed.',
+        '• Reopen – Reopens a closed issue or MR.',
+        '',
+        'Used for Update Issue and Update Merge Request. Ignored for other operations.'
+      ],
+      example: 'close'
+    },
+    mergeCommitMessage: {
+      title: 'How to get Merge Commit Message?',
+      steps: [
+        'You type or provide the message—optional. Used as the merge commit message when merging a merge request.',
+        '',
+        '• Leave empty to use GitLab’s default merge commit message.',
+        '',
+        'Used only for Merge Merge Request. Ignored for other operations.'
+      ],
+      example: 'Merge commit message'
+    },
+    jobId: {
+      title: 'GitLab Job ID – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitLab project',
+        '',
+        '2️⃣ Go to CI/CD → Pipelines',
+        '',
+        '3️⃣ Click on a pipeline to view its jobs',
+        '',
+        '4️⃣ Click on a specific job',
+        '',
+        '5️⃣ Look at the URL',
+        '   Format: .../jobs/789',
+        '   The number after /jobs/ is the Job ID',
+        '',
+        '6️⃣ Or use Get Pipeline Jobs first; each job in the response has an "id" field',
+        '',
+        '7️⃣ Paste into the Job ID field above',
+        '',
+        'Example: 789'
+      ],
+      example: '789'
+    },
+    branchName: {
+      title: 'How to get Branch Name?',
+      steps: [
+        'You type the branch name—the name you want for a new branch, or the name of the branch to delete or use for file operations.',
+        '',
+        '• Static: Type it directly, e.g. feature-ai, fix/login-bug',
+        '',
+        '• Dynamic: Use an expression if your workflow created the branch earlier',
+        '',
+        'In the project, open the branch dropdown and copy the branch name to confirm.',
+        '',
+        'Used for Create Branch, Delete Branch, Get File, Create File, Update File, Delete File. Ignored for other operations.'
+      ],
+      example: 'feature-branch'
+    },
+    filePath: {
+      title: 'GitLab File Path – Step-by-Step',
+      steps: [
+        '1️⃣ Open your GitLab project and navigate to the file (or folder where you want to create it)',
+        '',
+        '2️⃣ Look at the URL or breadcrumb',
+        '   The path after the branch name is the File Path',
+        '   e.g. docs/readme.md, src/utils.js',
+        '',
+        '3️⃣ Or build it: folder(s) + filename',
+        '   Use forward slashes (/). No leading slash.',
+        '',
+        '4️⃣ Paste into the File Path field above',
+        '',
+        'Example: docs/readme.md'
+      ],
+      example: 'src/file.js'
+    },
+    fileContent: {
+      title: 'How to get File Content?',
+      steps: [
+        'You provide the content—the exact text (or encoded content) to write to the file.',
+        '',
+        '• From a previous step: Use output from another node (e.g. generated doc, report), e.g. {{aiNode.content}} or {{readFileNode.content}}.',
+        '',
+        '• Static: Type or paste text.',
+        '',
+        'Required for Create File and Update File. Ignored for other operations.'
+      ],
+      example: 'File content'
+    },
+    commitMessage: {
+      title: 'How to get Commit Message?',
+      steps: [
+        'You type or provide the message—a short description of the file change.',
+        '',
+        '• Static: Type it directly, e.g. "Updated API documentation", "Add AI docs"',
+        '',
+        '• Dynamic: Use an expression, e.g. "Deploy {{trigger.env}}" or {{aiNode.summary}}',
+        '',
+        'Required for Create File, Update File, Delete File. Ignored for other operations.'
+      ],
+      example: 'Updated API documentation'
     }
   },
   bitbucket: {
@@ -4439,6 +6852,241 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'pk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'pk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Create Task – Add a new task. You need List ID and Task Name; optionally description, priority, assignees, due date.',
+        '',
+        '• Update Task – Change an existing task. You need Task ID; then set the fields you want to change.',
+        '',
+        '• Get Task – Fetch one task. You need Task ID.',
+        '',
+        '• Delete Task – Remove a task. You need Task ID.',
+        '',
+        '• List Tasks – Get tasks from a list. You need List ID; optionally Include Closed Tasks.',
+        '',
+        '• Add Comment – Add a comment to a task. You need Task ID and Comment Text.',
+        '',
+        '• Update Task Status – Change a task’s status. You need Task ID and Status (exact name from your list).',
+        '',
+        '• Get Teams / Get Spaces / Get Folders / Get Lists – Use these to get Workspace ID, Space ID, Folder ID, List ID for other operations.'
+      ],
+      example: 'Create Task'
+    },
+    workspaceId: {
+      title: 'ClickUp Workspace ID – Step-by-Step',
+      steps: [
+        '1️⃣ Use Get Teams (recommended)',
+        '   Set Operation to "Get Teams" and run the node',
+        '   The response lists your workspaces (teams)',
+        '   Each has an "id" — that is the Workspace ID',
+        '',
+        '2️⃣ From the URL',
+        '   After logging in, open ClickUp',
+        '   URL often looks like: app.clickup.com/WORKSPACE_ID',
+        '   The number (or segment) after the domain is the Workspace ID',
+        '',
+        '3️⃣ Use the Workspace ID',
+        '   Paste it into the Workspace ID field above',
+        '',
+        'Example:',
+        '90123456'
+      ],
+      example: '90123456'
+    },
+    spaceId: {
+      title: 'ClickUp Space ID – Step-by-Step',
+      steps: [
+        '1️⃣ Use Get Spaces',
+        '   Set Workspace ID and Operation to "Get Spaces"',
+        '   Run the node',
+        '   The response lists spaces; each has an "id"',
+        '   Copy that id — that is the Space ID',
+        '',
+        '2️⃣ From the URL',
+        '   Open a Space in ClickUp',
+        '   The URL may contain the space ID (e.g. in Space settings or path)',
+        '',
+        '3️⃣ Use the Space ID',
+        '   Paste it into the Space ID field above',
+        '',
+        'Example:',
+        '12345678'
+      ],
+      example: '12345678'
+    },
+    folderId: {
+      title: 'ClickUp Folder ID – Step-by-Step',
+      steps: [
+        '1️⃣ Use Get Folders',
+        '   Set Workspace ID and Space ID',
+        '   Set Operation to "Get Folders" and run the node',
+        '   The response lists folders; each has an "id"',
+        '   Copy that id — that is the Folder ID',
+        '',
+        '2️⃣ From the URL',
+        '   Open a Folder in ClickUp',
+        '   The URL may contain the folder ID (e.g. /folder/12345678)',
+        '',
+        '3️⃣ Use the Folder ID',
+        '   Paste it into the Folder ID field above',
+        '',
+        'Example:',
+        '12345678'
+      ],
+      example: '12345678'
+    },
+    listId: {
+      title: 'ClickUp List ID – Step-by-Step',
+      steps: [
+        '1️⃣ Use Get Lists',
+        '   Set Workspace ID, Space ID, and Folder ID (or Space ID only)',
+        '   Set Operation to "Get Lists" and run the node',
+        '   The response lists lists; each has an "id"',
+        '   Copy that id — that is the List ID',
+        '',
+        '2️⃣ From the URL',
+        '   Open the List in ClickUp',
+        '   URL often looks like: .../v/li/LIST_ID',
+        '   The segment after "li/" is the List ID',
+        '',
+        '3️⃣ Use the List ID',
+        '   Paste it into the List ID field above',
+        '',
+        'Example:',
+        '98765432'
+      ],
+      example: '98765432'
+    },
+    taskId: {
+      title: 'ClickUp Task ID – Step-by-Step',
+      steps: [
+        '1️⃣ From a previous node (recommended)',
+        '   Use List Tasks or Create Task earlier in the workflow',
+        '   Each task in the response has an "id"',
+        '   Use that value here, e.g. {{listTasksNode.tasks[0].id}}',
+        '',
+        '2️⃣ From the ClickUp URL',
+        '   Open the task in ClickUp',
+        '   The URL often contains the task ID (e.g. .../t/abc123def456)',
+        '   Copy the ID segment',
+        '',
+        '3️⃣ Use the Task ID',
+        '   Paste it into the Task ID field above',
+        '',
+        'Example:',
+        'abc123def456'
+      ],
+      example: 'abc123def456'
+    },
+    name: {
+      title: 'How to get Task Name?',
+      steps: [
+        'You type or provide the name—it is the title you want the task to have in ClickUp.',
+        '',
+        '• Static: Type it directly, e.g. "Complete project report", "Review proposal"',
+        '',
+        '• Dynamic: If your platform supports expressions, use data from earlier steps, e.g. {{input.title}} or "Follow up: {{trigger.subject}}"',
+        '',
+        'This field is required for Create Task and can be set in Update Task. It is ignored for other operations.'
+      ],
+      example: 'Complete project report'
+    },
+    description: {
+      title: 'How to get Task Description?',
+      steps: [
+        'You type or provide the description—optional. ClickUp supports markdown.',
+        '',
+        '• Static: Type or paste directly',
+        '',
+        '• Dynamic: Use an expression from a previous step, e.g. {{aiNode.summary}} or {{trigger.body}}',
+        '',
+        'Used for Create Task and Update Task. Ignored for other operations.'
+      ],
+      example: 'Task description'
+    },
+    status: {
+      title: 'How to get Status?',
+      steps: [
+        'Status must match exactly a status that exists in your List.',
+        '',
+        '• From ClickUp: Open your List and look at the status column or list settings. The labels (e.g. "to do", "in progress", "complete") are the exact names to use.',
+        '',
+        '• From API: When you Get Task or List Tasks, each task has a status object with a "status" field (the name). Use that exact string.',
+        '',
+        'Type the exact status name into the Status field. Case-sensitive. Used for Update Task Status and optionally for Create/Update Task.'
+      ],
+      example: 'in progress'
+    },
+    priority: {
+      title: 'How to get Priority?',
+      steps: [
+        'You choose from the dropdown in this node: Urgent, High, Normal, or Low.',
+        '',
+        '• Urgent = 4, High = 3, Normal = 2, Low = 1',
+        '',
+        'Used for Create Task and Update Task. Ignored for other operations.'
+      ],
+      example: 'Normal (2)'
+    },
+    assignees: {
+      title: 'How to get Assignees (JSON)?',
+      steps: [
+        'Assignees is a JSON array of user IDs (workspace member IDs).',
+        '',
+        '• Get user IDs from workspace members (API or ClickUp team settings). Each member has an "id".',
+        '',
+        '• From a previous node: If you listed tasks or got a task, assignees may be in the response as an array of IDs. Reuse that format.',
+        '',
+        '• Format: Enter a JSON array, e.g. ["12345678"] or ["id1","id2"]. No spaces inside brackets if your platform expects strict JSON.',
+        '',
+        'Used for Create Task and Update Task. Ignored for other operations.'
+      ],
+      example: '["user-id-1","user-id-2"]'
+    },
+    dueDate: {
+      title: 'How to get Due Date (Unix timestamp)?',
+      steps: [
+        'Due date must be in Unix timestamp in milliseconds (ms since Jan 1, 1970 00:00:00 UTC).',
+        '',
+        '• Example: 1735689600000 = 2024-12-31 00:00:00 UTC',
+        '',
+        '• From a previous step: If your platform has a "date to Unix ms" or "timestamp" function, use it (e.g. timestamp(input.dueDate)).',
+        '',
+        '• Manual: Use an online "date to Unix timestamp milliseconds" tool, or in code: new Date("2024-12-31").getTime()',
+        '',
+        'Used for Create Task and Update Task. Ignored for other operations.'
+      ],
+      example: '1735689600000'
+    },
+    commentText: {
+      title: 'How to get Comment Text?',
+      steps: [
+        'You type or provide the comment—the text that will appear as a comment on the task.',
+        '',
+        '• Static: Type or paste directly',
+        '',
+        '• Dynamic: Use an expression, e.g. {{aiNode.summary}} or "Workflow completed at {{now}}"',
+        '',
+        'Required for Add Comment. Ignored for other operations.'
+      ],
+      example: 'My comment'
+    },
+    includeClosed: {
+      title: 'How to use Include Closed Tasks?',
+      steps: [
+        'This is a toggle (on/off) in the node—you don’t "get" it from elsewhere.',
+        '',
+        '• Off (false): List Tasks returns only open/incomplete tasks. Default.',
+        '',
+        '• On (true): List Tasks returns all tasks, including closed/completed.',
+        '',
+        'Used only for List Tasks. Ignored for other operations.'
+      ],
+      example: 'false'
     }
   },
   trello: {
@@ -4557,6 +7205,208 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         'ATATT3xFfGF0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       ],
       example: 'ATATT3xFfGF0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    },
+    email: {
+      title: 'How to get Jira Email?',
+      steps: [
+        'Use the same email address you use to sign in to Jira.',
+        '',
+        'Example:',
+        'user@example.com'
+      ],
+      example: 'user@example.com'
+    },
+    domain: {
+      title: 'Jira Domain (Site URL) – Step-by-Step',
+      steps: [
+        '1️⃣ Open Jira in your browser',
+        '',
+        '2️⃣ Copy the site URL domain',
+        '   Example full URL: https://yourcompany.atlassian.net',
+        '   Domain to enter: yourcompany.atlassian.net',
+        '',
+        '3️⃣ Paste it into the Jira Domain field above',
+        '   Do not include https://',
+        '',
+        'Example:',
+        'yourcompany.atlassian.net'
+      ],
+      example: 'yourcompany.atlassian.net'
+    },
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• Create Issue – Create a new issue (requires Project Key, Summary).',
+        '',
+        '• Update Issue – Modify an issue (requires Issue Key).',
+        '',
+        '• Get Issue – Retrieve issue details (requires Issue Key).',
+        '',
+        '• Delete Issue – Remove an issue (requires Issue Key).',
+        '',
+        '• Search Issues – Find issues using JQL (requires JQL Query).',
+        '',
+        '• Transition Issue – Change issue status (requires Issue Key and Transition ID).',
+        '',
+        '• Add Comment – Add a comment (requires Issue Key and Comment Body).',
+        '',
+        '• Get Projects – List all projects.'
+      ],
+      example: 'Create Issue'
+    },
+    projectKey: {
+      title: 'Jira Project Key – Step-by-Step',
+      steps: [
+        '1️⃣ Open your Jira project',
+        '',
+        '2️⃣ Look at the URL or project settings',
+        '   The project key is shown in the URL or next to the project name',
+        '   Example: PROJ',
+        '',
+        '3️⃣ Paste it into the Project Key field above',
+        '',
+        'Example:',
+        'PROJ'
+      ],
+      example: 'PROJ'
+    },
+    issueKey: {
+      title: 'Jira Issue Key – Step-by-Step',
+      steps: [
+        '1️⃣ Open the issue in Jira',
+        '',
+        '2️⃣ Copy the issue key from the header or URL',
+        '   Example: PROJ-123',
+        '',
+        '3️⃣ Paste it into the Issue Key field above',
+        '',
+        'Example:',
+        'PROJ-123'
+      ],
+      example: 'PROJ-123'
+    },
+    summary: {
+      title: 'How to get Issue Summary?',
+      steps: [
+        'You type the summary—the short title of the issue.',
+        '',
+        '• Static: Type it directly, e.g. "Fix login bug".',
+        '',
+        '• Dynamic: Use data from earlier steps, e.g. "{{input.subject}}".',
+        '',
+        'Required for Create Issue.'
+      ],
+      example: 'Fix login bug'
+    },
+    description: {
+      title: 'How to get Issue Description?',
+      steps: [
+        'You type the detailed issue description.',
+        '',
+        '• Static: Type or paste directly.',
+        '',
+        '• Dynamic: Use data from earlier steps, e.g. "{{aiNode.summary}}".',
+        '',
+        'Markdown is supported.'
+      ],
+      example: 'Issue description'
+    },
+    issueType: {
+      title: 'How to get Issue Type?',
+      steps: [
+        'Issue Type must match a type in your project.',
+        '',
+        'Examples: Task, Bug, Story, Epic.',
+        '',
+        'Check your project\'s issue type list and use the exact name.'
+      ],
+      example: 'Task'
+    },
+    assignee: {
+      title: 'How to get Assignee Account ID?',
+      steps: [
+        'Assignee Account ID is a user identifier in Jira Cloud.',
+        '',
+        '• Use Jira user search API to find the accountId.',
+        '• Or open the user profile (if visible) and copy account ID.',
+        '',
+        'Paste the account ID into the Assignee field.'
+      ],
+      example: 'account-id'
+    },
+    priority: {
+      title: 'How to get Priority?',
+      steps: [
+        'Choose a priority from the dropdown.',
+        '',
+        'Common values: Highest, High, Medium, Low, Lowest.',
+        '',
+        'Use the priority names defined in your Jira instance.'
+      ],
+      example: 'Medium'
+    },
+    labels: {
+      title: 'How to get Labels (JSON)?',
+      steps: [
+        'Labels are a JSON array of label names.',
+        '',
+        'Example: ["bug", "urgent"]',
+        '',
+        'Use labels that already exist or create new ones.'
+      ],
+      example: '["bug","urgent"]'
+    },
+    transitionId: {
+      title: 'Jira Transition ID – Step-by-Step',
+      steps: [
+        '1️⃣ Use Jira transitions API for the issue',
+        '',
+        '2️⃣ Find the transition you want',
+        '   Copy its "id" value',
+        '',
+        '3️⃣ Paste it into the Transition ID field above',
+        '',
+        'Example:',
+        '31'
+      ],
+      example: '31'
+    },
+    commentBody: {
+      title: 'How to get Comment Body?',
+      steps: [
+        'You type or provide the comment text.',
+        '',
+        '• Static: Type it directly.',
+        '',
+        '• Dynamic: Use data from earlier steps, e.g. "{{input.feedback}}".',
+        '',
+        'Required for Add Comment.'
+      ],
+      example: 'My comment'
+    },
+    jql: {
+      title: 'How to get JQL Query?',
+      steps: [
+        'Use Jira Advanced Search to build a JQL query.',
+        '',
+        'Example: project = PROJ AND status = "In Progress"',
+        '',
+        'Copy the JQL string and paste it into the JQL Query field.'
+      ],
+      example: 'project = PROJ AND status = "In Progress"'
+    },
+    maxResults: {
+      title: 'How to get Max Results?',
+      steps: [
+        'Enter the maximum number of issues to return.',
+        '',
+        'Default is often 50.',
+        '',
+        'Use smaller values for large projects to avoid large responses.'
+      ],
+      example: '50'
     }
   },
   monday: {
@@ -4702,8 +7552,42 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
     }
   },
   google_analytics: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You choose this from the dropdown in the node.',
+        '',
+        '• Get Report – Use when you want metrics and dimensions for a date range. Set Access Token, Property ID, Date Ranges, and Metrics (and optionally Dimensions).',
+        '',
+        '• List Properties – Use when you want to list Analytics properties you can access (e.g. to find a Property ID). You need Access Token only.',
+        '',
+        '• Track Event – Use when you want to send an event to Google Analytics. Set Access Token, Property ID, Event Name, and optionally Event Parameters.'
+      ]
+    },
+    accessToken: {
+      title: 'How to get Access Token?',
+      url: 'https://console.cloud.google.com',
+      steps: [
+        '1️⃣ If your platform has "Connect Google" or "Sign in with Google":',
+        '   Go to Settings → Integrations (or similar)',
+        '   Click Connect Google',
+        '   Sign in with the Google account that has access to your Analytics property',
+        '   Approve the requested scopes (e.g. "View your Google Analytics data")',
+        '   The platform stores the Access Token and may fill this field automatically',
+        '',
+        '2️⃣ If using a Service Account:',
+        '   The platform uses the Service Account JSON to obtain the token',
+        '   Ensure the service account email is added in Analytics Admin → Property Access Management',
+        '',
+        '3️⃣ If you must paste a token manually:',
+        '   Use OAuth2 flow with your platform\'s Client ID and Client Secret to get an access token',
+        '   The token is temporary (often 1 hour); the platform may use a refresh token to get new ones',
+        '',
+        '⚠️ For Analytics Data API, an access token is required—not a long-lived API key.'
+      ]
+    },
     apiKey: {
-      title: 'Google Analytics API Key – Step-by-Step',
+      title: 'Google Analytics Access Token – Step-by-Step',
       url: 'https://console.cloud.google.com',
       steps: [
         '1️⃣ Open Google Cloud Console',
@@ -4714,27 +7598,132 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '   Click project dropdown',
         '   Select project or create new',
         '',
-        '3️⃣ Enable Google Analytics API',
-        '   Search for "Google Analytics Reporting API"',
+        '3️⃣ Enable Google Analytics Data API',
+        '   Search for "Google Analytics Data API"',
         '   Click on it',
         '   Click "Enable"',
         '',
-        '4️⃣ Go to Credentials',
-        '   Click "Credentials" in left sidebar',
-        '   Click "Create Credentials"',
-        '   Select "API key" or "OAuth client ID"',
+        '4️⃣ Create OAuth credentials or Service Account',
+        '   Credentials → Create Credentials → OAuth client ID (or Service Account)',
+        '   For OAuth: Use the platform\'s "Connect Google" to get an access token',
+        '   For Service Account: Download JSON and add the service account email to Analytics Admin → Property Access Management',
         '',
-        '5️⃣ Copy API Key',
-        '   API key will be generated',
-        '   Copy it immediately',
+        '5️⃣ Use the access token',
+        '   The platform may fill the Access Token field after you connect Google',
+        '   Or paste the token if your platform expects it',
         '',
-        '6️⃣ Store Securely',
-        '   Paste it into the API Key field above',
+        '⚠️ Use an access token (OAuth or Service Account), not a static API key.'
+      ]
+    },
+    propertyId: {
+      title: 'How to get Property ID?',
+      url: 'https://analytics.google.com',
+      steps: [
+        '1️⃣ Open Google Analytics',
+        '   Go to 👉 https://analytics.google.com',
+        '   Sign in and select the account that contains your property',
+        '',
+        '2️⃣ Go to Admin',
+        '   Click Admin (gear icon) in the bottom left',
+        '',
+        '3️⃣ Select your property',
+        '   In the Property column, select the GA4 property you want',
+        '',
+        '4️⃣ Open Property Settings',
+        '   Click Property Settings',
+        '',
+        '5️⃣ Copy Property ID',
+        '   At the top you will see Property ID – a numeric value (e.g. 123456789)',
+        '   For the node use: properties/123456789',
         '',
         'Example:',
-        'AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+        'properties/123456789'
       ],
-      example: 'AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      example: 'properties/123456789'
+    },
+    dateRanges: {
+      title: 'How to get Date Ranges (JSON)?',
+      steps: [
+        'You type or build this—it is not copied from the Analytics dashboard.',
+        '',
+        'Format: Use YYYY-MM-DD for dates. JSON array of objects with startDate and endDate.',
+        '',
+        'Single range:',
+        '[{"startDate": "2024-01-01", "endDate": "2024-01-31"}]',
+        '',
+        'Multiple ranges (if supported):',
+        '[{"startDate": "2024-01-01", "endDate": "2024-01-31"}, {"startDate": "2024-02-01", "endDate": "2024-02-29"}]',
+        '',
+        'If your platform supports expressions, you can use dynamic dates (e.g. from a previous step) as long as they resolve to YYYY-MM-DD.'
+      ],
+      example: '[{"startDate": "2024-01-01", "endDate": "2024-01-31"}]'
+    },
+    dimensions: {
+      title: 'How to get Dimensions (JSON)?',
+      steps: [
+        'You choose dimension names from the Google Analytics Data API (GA4). They are not copied from the dashboard.',
+        '',
+        'Common GA4 dimensions:',
+        '   • date – Date in YYYYMMDD',
+        '   • country, city – Geography',
+        '   • deviceCategory – desktop, mobile, tablet',
+        '   • sessionSource, sessionMedium, sessionCampaignName – Acquisition',
+        '   • pagePath, pageTitle – Page',
+        '',
+        'Format: JSON array of strings: ["date", "country", "city"]',
+        '',
+        'Check Google\'s "Dimensions & metrics reference" for the Analytics Data API. Invalid names cause API errors. Leave empty for totals only.'
+      ],
+      example: '["date", "country", "city"]'
+    },
+    metrics: {
+      title: 'How to get Metrics (JSON)?',
+      steps: [
+        'You choose metric names from the Google Analytics Data API (GA4). They are not copied from the dashboard.',
+        '',
+        'Common GA4 metrics:',
+        '   • activeUsers – Users in the period',
+        '   • sessions – Sessions',
+        '   • screenPageViews – Page/screen views',
+        '   • conversions – Conversions',
+        '   • totalRevenue – Revenue (e-commerce)',
+        '',
+        'Format: JSON array of strings: ["activeUsers", "sessions", "screenPageViews"]',
+        '',
+        'Check Google\'s "Dimensions & metrics reference" for the Analytics Data API. At least one metric is required for Get Report.'
+      ],
+      example: '["activeUsers", "sessions", "screenPageViews"]'
+    },
+    eventName: {
+      title: 'How to get Event Name?',
+      steps: [
+        'You choose or type the event name—the name you give to the action you are tracking.',
+        '',
+        'Standard events: Google recommends names like purchase, sign_up, page_view.',
+        '',
+        'Custom events: Use lowercase and underscores (e.g. form_submit, report_generated, workflow_completed).',
+        '',
+        'If your platform supports expressions, you can use a value from a previous step (e.g. {{input.eventName}}).',
+        '',
+        'This field is only used when Operation = Track Event.'
+      ],
+      example: 'purchase'
+    },
+    eventParams: {
+      title: 'How to get Event Parameters (JSON)?',
+      steps: [
+        'You build this JSON object—it is not copied from Analytics.',
+        '',
+        'Common parameters:',
+        '   • value – Numeric value (e.g. revenue)',
+        '   • currency – Currency code (e.g. USD)',
+        '   • Custom parameter names allowed by the Measurement Protocol or your platform',
+        '',
+        'Format: JSON object: {"value": 100, "currency": "USD"}',
+        '',
+        'This field is only used when Operation = Track Event. Leave empty or {} if you do not need parameters.'
+      ],
+      example: '{"value": 100, "currency": "USD"}'
     }
   },
   mixpanel: {
@@ -4949,6 +7938,20 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
   },
   // Google Contacts
   google_contacts: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You choose this from the dropdown in the node.',
+        '',
+        '• List Contacts – Use when you want to retrieve contacts from Google Contacts. You can set Max Results to limit how many are returned.',
+        '',
+        '• Create Contact – Use when you want to add a new contact. You need Name and Email (and optionally Phone).',
+        '',
+        '• Update Contact – Use when you want to change an existing contact. You need Contact ID and the fields you want to change (Name, Email, Phone).',
+        '',
+        '• Delete Contact – Use when you want to remove a contact. You need Contact ID only.'
+      ]
+    },
     contactId: {
       title: 'Google Contacts Contact ID – Step-by-Step',
       steps: [
@@ -4965,21 +7968,83 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '   Format: contacts.google.com/person/c1234567890',
         '   The ID is after /person/',
         '',
-        '4️⃣ Alternative: From API',
-        '   Use Google Contacts API',
-        '   Contact ID is in API response',
+        '4️⃣ Alternative: From a previous node',
+        '   If you used List Contacts earlier, use the contact id or resourceName from the output, e.g. {{listNode.contacts[0].resourceName}}',
         '',
         '5️⃣ Use the Contact ID',
-        '   Paste it into the Contact ID field above',
+        '   Paste it into the Contact ID field above (or use people/c1234567890 if your platform expects resource name)',
         '',
         'Example:',
         'c1234567890'
       ],
       example: 'c1234567890'
+    },
+    name: {
+      title: 'How to get Name?',
+      steps: [
+        'You type or set the name—it is not copied from an existing contact unless you reference a previous step.',
+        '',
+        'Static name: Type it directly, e.g. "John Doe" or "Jane Smith".',
+        '',
+        'Dynamic name: If your platform supports expressions, use data from earlier steps, e.g. {{input.firstName}} {{input.lastName}} or {{form.name}}.',
+        '',
+        'This field is only used when Operation = Create or Update. It is ignored for List and Delete.'
+      ],
+      example: 'John Doe'
+    },
+    email: {
+      title: 'How to get Email?',
+      steps: [
+        'Option 1: Type it – If the email is fixed (e.g. support@company.com), type it in the Email field.',
+        '',
+        'Option 2: From a form or trigger – If the workflow was started by a form or webhook, the submitter\'s email is often in the trigger data. Use {{trigger.email}} or {{input.email}}.',
+        '',
+        'Option 3: From a previous node – If an earlier step (e.g. CRM, spreadsheet, AI) returned an email, reference it, e.g. {{previousNode.email}}.',
+        '',
+        'Format: Must be a valid email (name@domain.com). No spaces. Required for Create and Update.'
+      ],
+      example: 'john@example.com'
+    },
+    phone: {
+      title: 'How to get Phone?',
+      steps: [
+        'You type or set the phone number—it is not copied from an existing contact unless you reference a previous step.',
+        '',
+        'Format: Include country code with + prefix when possible (e.g. +1 for US, +44 for UK). Examples: +1234567890, +441234567890.',
+        '',
+        'Dynamic: If your platform supports expressions, use {{input.phone}} or {{form.phone}}. Optional for Create and Update.'
+      ],
+      example: '+1234567890'
+    },
+    maxResults: {
+      title: 'How to get Max Results?',
+      steps: [
+        'You choose the number—it is not copied from Google Contacts.',
+        '',
+        'What to use: 10–100 for most cases (e.g. "last 50 contacts"); 500–1000 only if you need a larger list.',
+        '',
+        'This field only affects List Contacts. It is ignored when Operation = Create, Update, or Delete.'
+      ],
+      example: '100'
     }
   },
   // Google Tasks
   google_tasks: {
+    operation: {
+      title: 'How to get Operation?',
+      steps: [
+        'You don’t get this from anywhere—you choose it from the dropdown in this node.',
+        '',
+        '• List Tasks – Use when you want to retrieve tasks from a task list. Set Task List ID (or @default). The node returns a list of tasks.',
+        '',
+        '• Create Task – Use when you want to add a new task. You need Task Title; optionally Notes and Due Date. Set Task List ID (or @default).',
+        '',
+        '• Update Task – Use when you want to change an existing task (title, notes, due date). You need Task ID and Task List ID, then set the new Task Title and/or Notes and/or Due Date.',
+        '',
+        '• Complete Task – Use when you want to mark a task as done. You need Task ID and Task List ID only.'
+      ],
+      example: 'List Tasks'
+    },
     taskListId: {
       title: 'Google Tasks Task List ID – Step-by-Step',
       steps: [
@@ -4988,13 +8053,16 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
         '   This is the default value',
         '',
         '2️⃣ For Other Lists',
-        '   Use Google Tasks API',
-        '   Call: GET /tasks/v1/users/@me/lists',
-        '   Find the "id" field in response',
+        '   Use a "List Task Lists" step in your workflow if available',
+        '   The response includes an "id" for each list—copy that',
         '',
-        '3️⃣ Use the Task List ID',
+        '3️⃣ Alternative: Google Tasks API',
+        '   Call: GET /tasks/v1/users/@me/lists',
+        '   Find the "id" field in the response',
+        '',
+        '4️⃣ Use the Task List ID',
         '   Paste it into the Task List ID field above',
-        '   Use "@default" for main list',
+        '   Use "@default" for your main list',
         '',
         'Example:',
         '@default'
@@ -5004,21 +8072,69 @@ export const NODE_GUIDES: Record<NodeType, Record<FieldKey, NodeGuide>> = {
     taskId: {
       title: 'Google Tasks Task ID – Step-by-Step',
       steps: [
-        '1️⃣ From Google Tasks API',
-        '   When listing or creating tasks',
-        '   Task ID is in the API response',
+        '1️⃣ From a previous node (recommended)',
+        '   Use a List Tasks node earlier in the workflow',
+        '   Each task in the output has an "id" field',
+        '   Use that value here, e.g. {{listTasksNode.tasks[0].id}}',
         '',
-        '2️⃣ Get Task ID',
-        '   Call: GET /tasks/v1/lists/{taskListId}/tasks',
-        '   Find the "id" field for your task',
+        '2️⃣ From Create Task output',
+        '   When you create a task, the node returns an "id"',
+        '   Use that id for Update or Complete later',
         '',
-        '3️⃣ Use the Task ID',
-        '   Paste it into the Task ID field above',
+        '3️⃣ Task IDs are not shown in Gmail/Calendar UI',
+        '   They only come from the API or from a previous List Tasks or Create Task step',
         '',
         'Example:',
         'abc123def456'
       ],
       example: 'abc123def456'
+    },
+    title: {
+      title: 'How to get Task Title?',
+      steps: [
+        'You type or provide the title—it is the text you want the task to show in Google Tasks.',
+        '',
+        '• Static title: Type it directly, e.g. "Review proposal", "Send weekly report"',
+        '',
+        '• Dynamic title: If your platform supports expressions, use data from earlier steps, e.g. {{input.actionItem}} or "Follow up: {{trigger.subject}}"',
+        '',
+        'Keep it short; use the Notes field for longer details.',
+        '',
+        'This field is only used when Operation = Create or Update. It is ignored for List Tasks and Complete Task.'
+      ],
+      example: 'Complete project report'
+    },
+    notes: {
+      title: 'How to get Notes?',
+      steps: [
+        'Notes are optional detailed text for the task (instructions, context, links).',
+        '',
+        '• Static notes: Type or paste directly, e.g. "Check budget and timeline."',
+        '',
+        '• Dynamic notes: If your platform supports expressions, use data from earlier steps, e.g. {{aiNode.summary}} or "Source: {{trigger.url}}"',
+        '',
+        'Leave empty if you don’t need notes.',
+        '',
+        'This field is only used when Operation = Create or Update. It is ignored for List Tasks and Complete Task.'
+      ],
+      example: 'Task notes...'
+    },
+    dueDate: {
+      title: 'How to get Due Date (ISO 8601)?',
+      steps: [
+        'Due date must be in ISO 8601 format so Google Tasks and Calendar can use it.',
+        '',
+        '• Format: YYYY-MM-DD for date only, or YYYY-MM-DDTHH:mm:ssZ for date and time in UTC. The "T" separates date and time; "Z" means UTC.',
+        '',
+        '• Static value: Type it directly, e.g. 2024-01-20T17:00:00Z',
+        '',
+        '• Dynamic value: If your platform has a "format date" or "to ISO" function, use it. Or build the string from previous step data.',
+        '',
+        'With time zone: You can use an offset, e.g. 2024-01-15T12:00:00-05:00',
+        '',
+        'This field is only used when Operation = Create or Update. It is ignored for List Tasks and Complete Task.'
+      ],
+      example: '2024-01-15T23:59:59Z'
     }
   }
 };
